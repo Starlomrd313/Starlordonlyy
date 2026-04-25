@@ -1,8 +1,9 @@
+
 const texts = [
   "HEY SUMERAHHH",
   "CHAL YAAR AB MAAN BHI JA 🙂",
-  "Seriously… itna bhi gussa theek nahi 😅",
-  "Okay fine… meri galti 🤝"
+  "Okay fine… meri galti 🤝",
+  "Last chance 😄"
 ];
 
 const backgrounds = [
@@ -14,27 +15,28 @@ const backgrounds = [
 
 let i = 0;
 
-function next() {
-  const text = document.getElementById("text");
-  const sound = document.getElementById("clickSound");
+const textEl = document.getElementById("text");
+const btn = document.getElementById("btn");
+const sound = document.getElementById("clickSound");
 
-  // play sound
+// initial background
+document.body.style.backgroundImage = `url(${backgrounds[0]})`;
+
+btn.addEventListener("click", () => {
+  // sound play
   sound.currentTime = 0;
-  sound.play();
+  sound.play().catch(()=>{});
 
   i++;
 
   if (i < texts.length) {
-    text.innerText = texts[i];
+    textEl.innerText = texts[i];
     document.body.style.backgroundImage = `url(${backgrounds[i]})`;
   }
 
-  // final heart screen
   if (i === texts.length) {
-    text.innerHTML = `<div class="heart">❤️</div><br>Hope this made you smile 🙂`;
+    textEl.innerHTML = `<div class="heart">❤️</div><br>Hope this made you smile 🙂`;
     document.body.style.background = "#111";
+    btn.style.display = "none";
   }
-}
-
-// initial background
-document.body.style.backgroundImage = `url(${backgrounds[0]})`;
+});

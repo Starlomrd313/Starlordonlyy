@@ -4,27 +4,50 @@
 <meta charset="UTF-8">
 <title>For Sumera ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
+  font-family: 'Poppins', sans-serif;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  background: black;
   color: white;
-  font-family: Arial;
-  transition: 0.8s;
-  background-size: cover;
-  background-position: center;
+  transition: 1s;
+}
+
+/* animated gradient bg */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b, #1e90ff, #00c9ff);
+  animation: bgMove 8s linear infinite;
+  z-index: -1;
+}
+
+@keyframes bgMove {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-50%,-50%); }
+  100% { transform: translate(0,0); }
 }
 
 .container {
   text-align: center;
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
 }
 
 h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
+  font-size: 45px;
+  margin-bottom: 30px;
+  animation: fade 1s;
 }
 
 button {
@@ -33,16 +56,28 @@ button {
   border: none;
   font-size: 18px;
   cursor: pointer;
+  background: white;
+  color: black;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 /* heart */
 .heart {
-  font-size: 80px;
+  font-size: 90px;
   animation: beat 1s infinite;
 }
 @keyframes beat {
   0% {transform: scale(1);}
-  50% {transform: scale(1.3);}
+  50% {transform: scale(1.4);}
   100% {transform: scale(1);}
 }
 </style>
@@ -56,7 +91,7 @@ button {
 </div>
 
 <audio id="sound">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/27/audio_5c8c1cbd7c.mp3">
 </audio>
 
 <script>
@@ -67,16 +102,7 @@ const texts = [
   "Last chance 😄"
 ];
 
-const bg = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-  "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
-];
-
 let i = 0;
-
-document.body.style.backgroundImage = "url(" + bg[0] + ")";
 
 function next(){
   const sound = document.getElementById("sound");
@@ -85,14 +111,16 @@ function next(){
 
   i++;
 
+  const textEl = document.getElementById("text");
+
   if(i < texts.length){
-    document.getElementById("text").innerText = texts[i];
-    document.body.style.backgroundImage = "url(" + bg[i] + ")";
+    textEl.innerText = texts[i];
+    textEl.style.animation = "none";
+    setTimeout(()=> textEl.style.animation = "fade 1s", 10);
   }
 
   if(i === texts.length){
-    document.getElementById("text").innerHTML =
-      "<div class='heart'>❤️</div><br>Hope this made you smile 🙂";
+    textEl.innerHTML = "<div class='heart'>❤️</div><br>Hope this made you smile 🙂";
   }
 }
 </script>

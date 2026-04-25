@@ -1,129 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<title>For Sumera ❤️</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sumerah, Baat Kar Na 🌙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0c0814;
+      --purple: #9b6dff;
+      --lavender: #c4a8ff;
+      --soft: #e8deff;
+      --pink: #ffb3d1;
+      --gold: #ffd97d;
+      --white: #f5f0ff;
+      --dim: rgba(196,168,255,0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--white); font-family:'Nunito',sans-serif; overflow-x:hidden; cursor:none; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    /* Stars */
+    #stars { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .star { position:absolute; background:white; border-radius:50%; animation:twinkle linear infinite; }
+    @keyframes twinkle { 0%,100%{opacity:.1;transform:scale(1)} 50%{opacity:.9;transform:scale(1.4)} }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: black;
-  color: white;
-  transition: 1s;
-}
+    /* Cursor */
+    #cur  { position:fixed; width:14px; height:14px; background:var(--purple); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); box-shadow:0 0 16px var(--purple); transition:transform .08s; }
+    #cur2 { position:fixed; width:36px; height:36px; border:1.5px solid rgba(155,109,255,.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .18s ease; }
 
-/* animated gradient bg */
-body::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, #ff416c, #ff4b2b, #1e90ff, #00c9ff);
-  animation: bgMove 8s linear infinite;
-  z-index: -1;
-}
+    /* Music */
+    #mbtn { position:fixed; top:20px; right:22px; z-index:1000; background:rgba(155,109,255,.12); border:1px solid rgba(155,109,255,.4); color:var(--lavender); border-radius:50px; padding:9px 18px; font-family:'Nunito',sans-serif; font-size:13px; cursor:none; backdrop-filter:blur(12px); transition:all .3s; display:flex; align-items:center; gap:8px; }
+    #mbtn:hover { background:var(--purple); color:white; box-shadow:0 0 18px rgba(155,109,255,.5); }
+    .bars { display:flex; gap:2px; align-items:flex-end; height:14px; }
+    .bars span { width:3px; background:currentColor; border-radius:2px; animation:bar .7s ease-in-out infinite; }
+    .bars span:nth-child(1){height:6px;animation-delay:.0s}
+    .bars span:nth-child(2){height:12px;animation-delay:.1s}
+    .bars span:nth-child(3){height:8px;animation-delay:.2s}
+    .bars span:nth-child(4){height:10px;animation-delay:.3s}
+    @keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
+    .bars.off span{animation-play-state:paused}
 
-@keyframes bgMove {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-50%,-50%); }
-  100% { transform: translate(0,0); }
-}
+    /* Orbs */
+    .orb { position:fixed; border-radius:50%; pointer-events:none; z-index:0; filter:blur(80px); opacity:.18; animation:drift ease-in-out infinite; }
+    @keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,15px)}}
 
-.container {
-  text-align: center;
-  backdrop-filter: blur(20px);
-  padding: 40px;
-  border-radius: 20px;
-}
+    /* Hero */
+    #hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 24px; position:relative; z-index:1; }
+    .moon { font-size:70px; display:block; margin-bottom:16px; animation:moonFloat 4s ease-in-out infinite; filter:drop-shadow(0 0 24px rgba(255,217,125,.5)); }
+    @keyframes moonFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+    .tag { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(13px,2.5vw,16px); color:var(--dim); letter-spacing:4px; text-transform:uppercase; margin-bottom:18px; opacity:0; animation:rise .9s ease .3s forwards; }
+    h1 { font-family:'Dancing Script',cursive; font-size:clamp(44px,12vw,100px); font-weight:700; line-height:1.1; background:linear-gradient(130deg,var(--white),var(--lavender),var(--gold),var(--pink)); background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shine 6s linear infinite, rise .9s ease .6s both; }
+    @keyframes shine{0%{background-position:0%}100%{background-position:300%}}
+    .hero-sub { margin-top:20px; margin-bottom:44px; font-size:clamp(15px,2.8vw,19px); color:rgba(232,222,255,.65); max-width:480px; line-height:1.9; opacity:0; animation:rise .9s ease .9s forwards; }
+    .arrow { color:var(--purple); font-size:26px; opacity:0; animation:rise .9s ease 1.3s forwards, bob 2s ease-in-out 2.3s infinite; }
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+    @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
-h1 {
-  font-size: 45px;
-  margin-bottom: 30px;
-  animation: fade 1s;
-}
+    section { position:relative; z-index:1; }
+    .sep { text-align:center; padding:8px 0; letter-spacing:16px; font-size:18px; color:rgba(155,109,255,.3); z-index:1; position:relative; }
 
-button {
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  background: white;
-  color: black;
-  transition: 0.3s;
-}
+    /* Letter */
+    #letter { padding:70px 20px; max-width:700px; margin:0 auto; }
+    .card { background:linear-gradient(145deg,rgba(155,109,255,.07),rgba(196,168,255,.04)); border:1px solid rgba(155,109,255,.18); border-radius:22px; padding:clamp(28px,6vw,56px); backdrop-filter:blur(18px); box-shadow:0 28px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04); position:relative; overflow:hidden; }
+    .card::before { content:'✦'; position:absolute; top:-30px; right:20px; font-size:180px; color:rgba(155,109,255,.04); line-height:1; pointer-events:none; }
+    .card-label { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:15px; letter-spacing:2px; margin-bottom:26px; display:flex; align-items:center; gap:10px; }
+    .card-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
+    .letter-body { font-size:clamp(16px,2.4vw,20px); line-height:2; color:rgba(240,232,255,.85); }
+    .letter-body p { margin-bottom:18px; }
+    .hi { color:var(--gold); font-style:italic; font-family:'Dancing Script',cursive; font-size:1.3em; }
+    .em { color:var(--lavender); font-style:italic; }
+    .sign { margin-top:32px; text-align:right; font-family:'Dancing Script',cursive; font-size:28px; color:var(--purple); filter:drop-shadow(0 0 8px rgba(155,109,255,.5)); }
 
-button:hover {
-  transform: scale(1.1);
-}
+    /* Ask */
+    #ask { padding:60px 20px; text-align:center; max-width:720px; margin:0 auto; }
+    .sec-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,6vw,50px); font-weight:600; color:var(--white); margin-bottom:10px; }
+    .sec-sub { color:var(--dim); font-size:15px; margin-bottom:46px; font-style:italic; }
+    .bubbles { display:flex; flex-direction:column; gap:16px; align-items:flex-start; max-width:520px; margin:0 auto; }
+    .bubble { background:linear-gradient(135deg,rgba(155,109,255,.1),rgba(196,168,255,.06)); border:1px solid rgba(155,109,255,.2); border-radius:18px 18px 18px 4px; padding:18px 24px; font-size:clamp(15px,2.2vw,18px); color:rgba(240,232,255,.82); line-height:1.7; max-width:420px; opacity:0; transform:translateX(-20px); transition:opacity .6s ease,transform .6s ease; }
+    .bubble.right { align-self:flex-end; border-radius:18px 18px 4px 18px; }
+    .bubble.in { opacity:1; transform:translateX(0); }
+    .bubble .ico { font-size:20px; margin-right:6px; }
 
-@keyframes fade {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    /* Promise */
+    #promise { padding:70px 20px; text-align:center; }
+    .promise-ring { max-width:580px; margin:36px auto 0; background:linear-gradient(135deg,rgba(155,109,255,.15),rgba(255,179,209,.08)); border:1px solid rgba(155,109,255,.25); border-radius:22px; padding:clamp(30px,6vw,52px); box-shadow:0 0 50px rgba(155,109,255,.15),0 28px 60px rgba(0,0,0,.4); position:relative; overflow:hidden; }
+    .promise-ring::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 30%,rgba(155,109,255,.12),transparent 60%); border-radius:22px; }
+    .promise-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(18px,3.5vw,26px); color:var(--soft); line-height:1.8; position:relative; }
+    .promise-icon { font-size:44px; margin-top:22px; display:block; animation:moonFloat 3s ease-in-out infinite; }
 
-/* heart */
-.heart {
-  font-size: 90px;
-  animation: beat 1s infinite;
-}
-@keyframes beat {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.4);}
-  100% {transform: scale(1);}
-}
-</style>
+    /* CTA */
+    .cta-row { margin-top:56px; display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+    .btn { font-family:'Nunito',sans-serif; font-size:17px; padding:16px 38px; border-radius:60px; border:none; cursor:none; transition:all .3s ease; }
+    .btn-main { background:linear-gradient(135deg,var(--purple),#7144d4); color:white; box-shadow:0 10px 36px rgba(155,109,255,.35); }
+    .btn-main:hover { transform:translateY(-4px) scale(1.04); box-shadow:0 18px 50px rgba(155,109,255,.55); }
+    .btn-soft { background:transparent; color:var(--lavender); border:1.5px solid rgba(196,168,255,.3); }
+    .btn-soft:hover { border-color:var(--lavender); background:rgba(196,168,255,.08); transform:translateY(-3px); }
+
+    footer { position:relative; z-index:1; text-align:center; padding:36px 20px 56px; color:rgba(196,168,255,.25); font-size:13px; }
+    footer span { color:var(--purple); }
+
+    /* Popup */
+    #pop { display:none; position:fixed; inset:0; background:rgba(8,4,16,.85); z-index:8000; align-items:center; justify-content:center; backdrop-filter:blur(14px); }
+    #pop.on { display:flex; }
+    .pop-card { background:linear-gradient(145deg,#1a1028,#0f0a1a); border:1px solid rgba(155,109,255,.3); border-radius:22px; padding:48px 38px; text-align:center; max-width:400px; width:90%; box-shadow:0 36px 80px rgba(0,0,0,.6); animation:popIn .4s cubic-bezier(.175,.885,.32,1.275); }
+    @keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+    .pop-emo { font-size:60px; display:block; margin-bottom:14px; }
+    .pop-title { font-family:'Dancing Script',cursive; font-size:30px; color:var(--gold); margin-bottom:12px; }
+    .pop-msg { color:rgba(232,222,255,.72); font-size:15px; line-height:1.9; margin-bottom:26px; }
+    .pop-btn { background:var(--purple); color:white; border:none; border-radius:50px; padding:13px 34px; font-family:'Nunito',sans-serif; font-size:15px; cursor:none; transition:all .3s; }
+    .pop-btn:hover { transform:scale(1.05); box-shadow:0 10px 28px rgba(155,109,255,.5); }
+
+    .spark { position:fixed; pointer-events:none; z-index:9000; animation:sparkle .65s ease forwards; }
+    @keyframes sparkle{0%{transform:scale(0) rotate(0deg);opacity:1}100%{transform:scale(2.2) rotate(180deg);opacity:0}}
+
+    @media(max-width:480px){ .bubbles{align-items:stretch} .bubble{max-width:100%} }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-  <h1 id="text">HEY SUMERAHHH</h1>
-  <button onclick="next()">Continue</button>
-</div>
+<div id="cur"></div>
+<div id="cur2"></div>
+<div id="stars"></div>
 
-<audio id="sound">
-  <source src="https://cdn.pixabay.com/download/audio/2023/03/27/audio_5c8c1cbd7c.mp3">
+<div class="orb" style="width:500px;height:500px;background:var(--purple);top:-100px;left:-150px;animation-duration:12s;"></div>
+<div class="orb" style="width:400px;height:400px;background:#d44dff;bottom:-80px;right:-120px;animation-duration:15s;animation-delay:-5s;"></div>
+
+<audio id="aud" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg"/>
 </audio>
 
+<button id="mbtn" onclick="toggleMusic()">
+  <div class="bars" id="bars"><span></span><span></span><span></span><span></span></div>
+  <span id="mlabel">Music</span>
+</button>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="moon">🌙</span>
+  <p class="tag">Sumerah ke liye ✦ Dil Se</p>
+  <h1>Baat Kar Na...</h1>
+  <p class="hero-sub">
+    Tujhe koi pressure nahi, koi drama nahi —<br/>
+    bas ek baar bol de, raat bhar manaunga. 🌟
+  </p>
+  <span class="arrow">↓</span>
+</section>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- LETTER -->
+<section id="letter">
+  <div class="card">
+    <div class="card-label">🌙 Tere Liye Likha</div>
+    <div class="letter-body">
+      <p><span class="hi">Sumerah,</span></p>
+      <p>Pata hai tu gusse mein hai. Aur honestly, <span class="em">main samajhta hoon.</span> Tujhe force nahi karna chahta kuch bhi feel karne ke liye.</p>
+      <p>Bas itna jaanta hoon ki jab tu baat nahi karta — <span class="em">kuch missing lagta hai.</span> Teri baatein, teri hasi — woh sab yaad aata rehta hai.</p>
+      <p>Tu chahe jo soche mere baare mein, lekin ek baat sach hai — <span class="em">teri khushi mujhe khushi deti hai.</span> Aur tujhe khafa dekhna... dil nahi maanta.</p>
+      <p>Isliye bas yeh request hai — <span class="em">ek baar baat kar, raat bhar manaunga.</span> Promise. 🌙</p>
+    </div>
+    <div class="sign">— Tera Dost 💜</div>
+  </div>
+</section>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- JUST ASKING -->
+<section id="ask">
+  <h2 class="sec-title">Main Kya Maang Raha Hoon?</h2>
+  <p class="sec-sub">Kuch zyada nahi, bas thoda sa...</p>
+  <div class="bubbles" id="bubbles">
+    <div class="bubble"><span class="ico">💬</span> Ek baat — bas "okay, bol" itna hi kaafi hai.</div>
+    <div class="bubble right"><span class="ico">🌙</span> Raat bhar baat karein, hasein, sab normal kar dein.</div>
+    <div class="bubble"><span class="ico">🤝</span> Koi awkward nahi, koi pressure nahi — sirf dost ki tarah.</div>
+    <div class="bubble right"><span class="ico">✨</span> Teri smile wapas dekh loon — bas itna hi chahiye.</div>
+    <div class="bubble"><span class="ico">🙏</span> Gussa rakhna thoda mushkil hota hai... de de maafi? 😅</div>
+  </div>
+</section>
+
+<div class="sep">✦ ✦ ✦</div>
+
+<!-- PROMISE -->
+<section id="promise">
+  <h2 class="sec-title">Ek Choti Si Baat</h2>
+  <p class="sec-sub">Dil se...</p>
+  <div class="promise-ring">
+    <p class="promise-quote">
+      "Tujhe kuch prove nahi karna,<br/>
+      kuch feel karna nahi hai forcefully —<br/>
+      bas ek baar <strong style="color:var(--lavender)">Sumerah</strong>, baat kar.<br/>
+      Baki main sambhal lunga. 🌙"
+    </p>
+    <span class="promise-icon">💫</span>
+  </div>
+
+  <div class="cta-row">
+    <button class="btn btn-main" onclick="onYes()">💜 Theek Hai, Baat Karein!</button>
+    <button class="btn btn-soft" onclick="onNo()">🌙 Abhi Nahi...</button>
+  </div>
+</section>
+
+<footer>Sirf <span>Sumerah</span> ke liye banaya — dil se ✦ <span>💜</span></footer>
+
+<!-- Popup -->
+<div id="pop">
+  <div class="pop-card">
+    <span class="pop-emo" id="pemo">🌟</span>
+    <h3 class="pop-title" id="ptitle">Yay!</h3>
+    <p class="pop-msg" id="pmsg"></p>
+    <button class="pop-btn" onclick="closePop()">💜 Okay!</button>
+  </div>
+</div>
+
 <script>
-const texts = [
-  "HEY SUMERAHHH",
-  "CHAL YAAR AB MAAN BHI JA 🙂",
-  "Okay fine… meri galti 🤝",
-  "Last chance 😄"
-];
-
-let i = 0;
-
-function next(){
-  const sound = document.getElementById("sound");
-  sound.currentTime = 0;
-  sound.play().catch(()=>{});
-
-  i++;
-
-  const textEl = document.getElementById("text");
-
-  if(i < texts.length){
-    textEl.innerText = texts[i];
-    textEl.style.animation = "none";
-    setTimeout(()=> textEl.style.animation = "fade 1s", 10);
+  // Stars
+  const sc=document.getElementById('stars');
+  for(let i=0;i<130;i++){
+    const s=document.createElement('div'); s.className='star';
+    const z=.5+Math.random()*2;
+    s.style.cssText=`width:${z}px;height:${z}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    sc.appendChild(s);
   }
 
-  if(i === texts.length){
-    textEl.innerHTML = "<div class='heart'>❤️</div><br>Hope this made you smile 🙂";
+  // Cursor
+  const c1=document.getElementById('cur'),c2=document.getElementById('cur2');
+  document.addEventListener('mousemove',e=>{
+    c1.style.left=e.clientX+'px'; c1.style.top=e.clientY+'px';
+    setTimeout(()=>{c2.style.left=e.clientX+'px';c2.style.top=e.clientY+'px';},100);
+  });
+
+  // Music
+  const aud=document.getElementById('aud');
+  let playing=false;
+  function toggleMusic(){
+    if(!playing){
+      aud.volume=.3;
+      aud.play().then(()=>{
+        playing=true;
+        document.getElementById('mlabel').textContent=' On';
+        document.getElementById('bars').classList.remove('off');
+      }).catch(()=>{});
+    } else {
+      aud.pause(); playing=false;
+      document.getElementById('mlabel').textContent=' Off';
+      document.getElementById('bars').classList.add('off');
+    }
   }
-}
+
+  // Sparkle on click
+  document.addEventListener('click',e=>{
+    for(let i=0;i<5;i++){
+      const s=document.createElement('div'); s.className='spark';
+      s.textContent=['✨','💫','💜','🌙','⭐'][Math.floor(Math.random()*5)];
+      s.style.cssText=`left:${e.clientX+(Math.random()-.5)*70}px;top:${e.clientY+(Math.random()-.5)*70}px;font-size:${10+Math.random()*14}px`;
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),700);
+    }
+  });
+
+  // Bubble observer
+  const bo=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');bo.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll('.bubble').forEach((b,i)=>{
+    b.style.transitionDelay=(i*.12)+'s'; bo.observe(b);
+  });
+
+  // Card fade
+  const co=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} });
+  },{threshold:.08});
+  document.querySelectorAll('.card,.promise-ring').forEach(el=>{
+    el.style.opacity='0'; el.style.transform='translateY(24px)';
+    el.style.transition='opacity .7s ease,transform .7s ease';
+    co.observe(el);
+  });
+
+  // Popup helpers
+  const pemo=document.getElementById('pemo'),ptitle=document.getElementById('ptitle'),pmsg=document.getElementById('pmsg');
+  function onYes(){
+    burst();
+    pemo.textContent='🎉'; ptitle.textContent='Shukriya Sumerah! 💜';
+    pmsg.textContent='Seriously dil khush ho gaya. Ab raat bhar baat karein, hasein — koi drama nahi. Just us. 🌙✨';
+    document.getElementById('pop').classList.add('on');
+  }
+  function onNo(){
+    pemo.textContent='🌙'; ptitle.textContent='Theek Hai...';
+    pmsg.textContent='Koi baat nahi Sumerah. Jab bhi ready ho — main yahan hoon. Koi rush nahi. 💜';
+    document.getElementById('pop').classList.add('on');
+  }
+  function closePop(){ document.getElementById('pop').classList.remove('on'); }
+  function burst(){
+    for(let i=0;i<22;i++){
+      setTimeout(()=>{
+        const s=document.createElement('div'); s.className='spark';
+        s.textContent=['💜','✨','🌙','💫','🌟'][Math.floor(Math.random()*5)];
+        s.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*100}vh;font-size:${18+Math.random()*18}px`;
+        document.body.appendChild(s); setTimeout(()=>s.remove(),800);
+      },i*55);
+    }
+  }
 </script>
-
 </body>
 </html>

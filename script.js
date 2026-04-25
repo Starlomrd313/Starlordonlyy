@@ -1,38 +1,40 @@
-const messages = [
-  "Hey Sumera...",
-  "Thoda over ho gaya tha 😅",
-  "But ignore karna itna bhi zaroori tha kya?",
-  "Chal maan liya meri galti 🤝",
-  "Ab maan bhi ja 🙂",
-  "Normal ho jaye?"
+const texts = [
+  "HEY SUMERAHHH",
+  "CHAL YAAR AB MAAN BHI JA 🙂",
+  "Seriously… itna bhi gussa theek nahi 😅",
+  "Okay fine… meri galti 🤝"
 ];
 
-let index = 0;
+const backgrounds = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+  "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
+];
+
+let i = 0;
 
 function next() {
-  document.getElementById("music").play();
+  const text = document.getElementById("text");
+  const sound = document.getElementById("clickSound");
 
-  index++;
-  if(index < messages.length){
-    document.getElementById("text").innerText = messages[index];
+  // play sound
+  sound.currentTime = 0;
+  sound.play();
+
+  i++;
+
+  if (i < texts.length) {
+    text.innerText = texts[i];
+    document.body.style.backgroundImage = `url(${backgrounds[i]})`;
   }
 
-  if(index === messages.length - 1){
-    setTimeout(() => {
-      const yes = document.createElement("button");
-      yes.innerText = "Theek hai 🙂";
-      yes.onclick = () => {
-        document.getElementById("text").innerText = "Good 😄";
-      };
-
-      const no = document.createElement("button");
-      no.innerText = "Nahi 😒";
-      no.onclick = () => {
-        alert("Fir try kar 😄");
-      };
-
-      document.querySelector(".container").appendChild(yes);
-      document.querySelector(".container").appendChild(no);
-    }, 500);
+  // final heart screen
+  if (i === texts.length) {
+    text.innerHTML = `<div class="heart">❤️</div><br>Hope this made you smile 🙂`;
+    document.body.style.background = "#111";
   }
 }
+
+// initial background
+document.body.style.backgroundImage = `url(${backgrounds[0]})`;

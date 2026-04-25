@@ -3,55 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>For Sumera</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at top, #1f1c2c, #928dab);
-  color: white;
-}
-
-.container {
-  text-align: center;
-  padding: 20px;
-  max-width: 500px;
-}
-
-h1 {
-  font-size: 32px;
-  font-weight: 600;
-  min-height: 100px;
-}
-
-button {
-  padding: 12px 25px;
-  margin: 10px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-  color: black;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.1);
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<div class="overlay"></div>
+
 <div class="container">
-  <h1 id="text">Sumera...</h1>
+  <h1 id="text">Hey Sumera...</h1>
   <button onclick="next()">Tap here</button>
 </div>
 
@@ -59,64 +19,7 @@ button:hover {
   <source src="https://cdn.pixabay.com/download/audio/2023/03/27/audio_5c8c1cbd7c.mp3">
 </audio>
 
-<script>
-const messages = [
-  "Sumera...",
-  "Thoda over ho gaya tha shayad 😅",
-  "But ignore karna itna bhi zaroori tha kya?",
-  "Chal theek hai meri galti 🤝",
-  "Ab maan bhi ja yaar 🙂",
-  "Let's be normal again?"
-];
-
-let index = 0;
-
-function next() {
-  document.getElementById("music").play();
-
-  index++;
-  if(index < messages.length){
-    document.getElementById("text").innerText = messages[index];
-  }
-
-  if(index === messages.length - 1){
-    setTimeout(() => {
-      const yes = document.createElement("button");
-      yes.innerText = "Theek hai 🙂";
-      yes.onclick = () => {
-        document.getElementById("text").innerHTML = "Good 🙂<br>Ab smile kar 😄";
-      };
-
-      const no = document.createElement("button");
-      no.innerText = "Nahi 😒";
-      no.onclick = () => {
-        alert("Try again 😄");
-      };
-
-      document.querySelector(".container").appendChild(yes);
-      document.querySelector(".container").appendChild(no);
-    }, 500);
-  }
-}
-</script>
+<script src="script.js"></script>
 
 </body>
-</html>      };
-
-      const no = document.createElement("button");
-      no.innerText = "Still Angry 😒";
-      no.onclick = () => {
-        alert("I'll keep trying until you smile 😊");
-      };
-
-      document.querySelector(".container").appendChild(yes);
-      document.querySelector(".container").appendChild(no);
-    }, 800);
-  }
-}
-
-typeEffect(messages[0], document.getElementById("text"));
-</script>
-
-</body>
-</html>
+</html>    

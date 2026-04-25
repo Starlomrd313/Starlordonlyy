@@ -2,55 +2,48 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Sumera ❤️</title>
+<title>For Sumera</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  background: radial-gradient(circle at top, #1f1c2c, #928dab);
+  color: white;
 }
 
 .container {
   text-align: center;
-  max-width: 500px;
   padding: 20px;
-  animation: fadeIn 1.5s ease;
+  max-width: 500px;
 }
 
 h1 {
-  font-weight: 500;
-  font-size: 28px;
-  min-height: 80px;
+  font-size: 32px;
+  font-weight: 600;
+  min-height: 100px;
 }
 
 button {
-  margin: 10px;
   padding: 12px 25px;
+  margin: 10px;
+  border-radius: 30px;
   border: none;
-  border-radius: 25px;
-  background: white;
-  color: black;
   font-size: 16px;
   cursor: pointer;
+  background: white;
+  color: black;
   transition: 0.3s;
 }
 
 button:hover {
   transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -58,55 +51,57 @@ button:hover {
 <body>
 
 <div class="container">
-  <h1 id="text"></h1>
-  <button onclick="next()" id="btn">Continue</button>
+  <h1 id="text">Sumera...</h1>
+  <button onclick="next()">Tap here</button>
 </div>
 
-<audio id="music" autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=emotional-piano-ambient-110997.mp3">
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/27/audio_5c8c1cbd7c.mp3">
 </audio>
 
 <script>
 const messages = [
-  "Hey Sumera...",
-  "I know you're upset...",
-  "And honestly... I deserve that 😔",
-  "But I never wanted to hurt you",
-  "You really matter to me ❤️",
-  "Can I fix this?"
+  "Sumera...",
+  "Thoda over ho gaya tha shayad 😅",
+  "But ignore karna itna bhi zaroori tha kya?",
+  "Chal theek hai meri galti 🤝",
+  "Ab maan bhi ja yaar 🙂",
+  "Let's be normal again?"
 ];
 
 let index = 0;
 
-function typeEffect(text, element, speed = 50) {
-  let i = 0;
-  element.innerHTML = "";
-  function typing() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    }
-  }
-  typing();
-}
-
 function next() {
-  index++;
+  document.getElementById("music").play();
 
+  index++;
   if(index < messages.length){
-    typeEffect(messages[index], document.getElementById("text"));
+    document.getElementById("text").innerText = messages[index];
   }
 
   if(index === messages.length - 1){
-    document.getElementById("btn").style.display = "none";
-
     setTimeout(() => {
       const yes = document.createElement("button");
-      yes.innerText = "Okay 🙂";
+      yes.innerText = "Theek hai 🙂";
       yes.onclick = () => {
-        document.getElementById("text").innerHTML = "Thank you Sumera ❤️<br>I promise I'll make things right.";
+        document.getElementById("text").innerHTML = "Good 🙂<br>Ab smile kar 😄";
       };
+
+      const no = document.createElement("button");
+      no.innerText = "Nahi 😒";
+      no.onclick = () => {
+        alert("Try again 😄");
+      };
+
+      document.querySelector(".container").appendChild(yes);
+      document.querySelector(".container").appendChild(no);
+    }, 500);
+  }
+}
+</script>
+
+</body>
+</html>      };
 
       const no = document.createElement("button");
       no.innerText = "Still Angry 😒";

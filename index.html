@@ -325,4 +325,132 @@ body{background:#000;color:var(--cream);font-family:'Crimson Pro',serif;cursor:n
 
       /* dim base trail */
       if(head>1){
-        hx.beginPath();hx.moveTo(pts[0].x,pts[0].
+        hx.beginPath();hx.moveTo(pts[0].x,pts[0].y);
+        for(let i=1;i<=Math.min(head,STEPS);i++) hx.lineTo(pts[i].x,pts[i].y);
+        hx.strokeStyle='rgba(160,35,10,0.5)';hx.lineWidth=1.8;
+        hx.lineCap='round';hx.lineJoin='round';hx.shadowBlur=0;hx.stroke();
+      }
+
+      if(!done){
+        head=Math.min(head+SPEED,STEPS);
+        const tS=Math.max(0,head-TRAIL);
+        hx.beginPath();hx.moveTo(pts[tS].x,pts[tS].y);
+        for(let i=tS+1;i<=head;i++) hx.lineTo(pts[i].x,pts[i].y);
+        const g=hx.createLinearGradient(pts[tS].x,pts[tS].y,pts[head].x,pts[head].y);
+        g.addColorStop(0,'rgba(200,50,0,0)');
+        g.addColorStop(0.5,'rgba(255,100,20,0.85)');
+        g.addColorStop(1,'rgba(255,220,60,1)');
+        hx.strokeStyle=g;hx.lineWidth=3.5;hx.shadowColor='#ff7020';hx.shadowBlur=22;hx.stroke();hx.shadowBlur=0;
+
+        /* arrowhead */
+        if(head>3){
+          const ax=pts[head].x,ay=pts[head].y,bx=pts[head-3].x,by=pts[head-3].y;
+          const ang=Math.atan2(ay-by,ax-bx),al=11;
+          hx.beginPath();hx.moveTo(ax,ay);
+          hx.lineTo(ax-al*Math.cos(ang-0.38),ay-al*Math.sin(ang-0.38));
+          hx.lineTo(ax-al*Math.cos(ang+0.38),ay-al*Math.sin(ang+0.38));
+          hx.closePath();hx.fillStyle='#ffe040';hx.shadowColor='#ff8020';hx.shadowBlur=16;hx.fill();hx.shadowBlur=0;
+        }
+        if(head>=STEPS) done=true;
+
+      } else {
+        /* looping glow after complete */
+        glowT=(glowT+3)%STEPS;
+        const gS=(glowT-TRAIL+STEPS)%STEPS;
+        hx.beginPath();
+        let first=true;
+        for(let k=0;k<=TRAIL;k++){
+          const idx=(gS+k)%STEPS;
+          if(first){hx.moveTo(pts[idx].x,pts[idx].y);first=false;}
+          else hx.lineTo(pts[idx].x,pts[idx].y);
+        }
+        const p0=pts[gS%STEPS],p1=pts[(gS+TRAIL)%STEPS];
+        const gg=hx.createLinearGradient(p0.x,p0.y,p1.x,p1.y);
+        gg.addColorStop(0,'rgba(255,80,10,0)');
+        gg.addColorStop(0.6,'rgba(255,130,30,0.9)');
+        gg.addColorStop(1,'rgba(255,230,70,1)');
+        hx.strokeStyle=gg;hx.lineWidth=3.5;hx.shadowColor='#ff6010';hx.shadowBlur=20;hx.stroke();hx.shadowBlur=0;
+      }
+      animId=requestAnimationFrame(frame);
+    }
+    frame();
+    return ()=>{if(animId) cancelAnimationFrame(animId);};
+  }
+
+  /* PAGES */
+  const pages=document.querySelectorAll('.page'),total=pages.length;
+  let current=0;
+
+  /* LOADER */
+  const loader=document.getElementById('loader');
+  const loaderWord=document.getElementById('loaderWord');
+  const loaderBar=document.getElementById('loaderBar');
+  const WORD='STARLORD WRITING';
+  let stopHeart=null;
+
+  function showLoader(cb){
+    loaderWord.innerHTML='';loaderBar.style.width='0%';
+    loader.classList.add('show');
+    if(stopHeart) stopHeart();
+    stopHeart=runHeartAnim();
+
+    WORD.split('').forEach(ch=>{
+      const sp=document.createElement('span');sp.textContent=ch;loaderWord.appendChild(sp);
+    });
+    const spans=loaderWord.querySelectorAll('span');
+    let li=0;
+    const litv=setInterval(()=>{
+      if(li<spans.length){spans[li].classList.add('show');li++;}else clearInterval(litv);
+    },90);
+
+    let pct=0;
+    const barTv=setInterval(()=>{
+      pct+=Math.random()*9+4;
+      if(pct>=100){pct=100;clearInterval(barTv);}
+      loaderBar.style.width=pct+'%';
+    },55);
+
+    setTimeout(()=>{
+      loader.classList.remove('show');
+      if(stopHeart){stopHeart();stopHeart=null;}
+      setTimeout(cb,370);
+    },1750);
+  }
+
+  function animatePage(pg){
+    pg.querySelectorAll('.tag,.hero-name,.gold-line,.hero-sub,.chapter-label,.pg-title,.pg-film,.pg-quote,.pg-sub,.letter-box,.final-verse,.final-name,.final-tag,.btn-cont')
+      .forEach((el,i)=>{
+        el.style.animation='none';void el.offsetHeight;
+        el.style.animation=`pgUp .72s ease ${i*0.07}s both`;
+      });
+  }
+
+  window.goNext=function(){
+    if(current>=total-1) return;
+    showLoader(()=>{
+      pages[current].classList.remove('active');
+      current++;showBg(current);
+      pages[current].classList.add('active');
+      animatePage(pages[current]);
+    });
+  };
+
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter') window.goNext();});
+  window.addEventListener('load',()=>animatePage(pages[0]));
+
+  /* AUDIO */
+  const audio=new Audio();
+  audio.loop=true;audio.volume=0.25;
+  audio.src='https://cdn.pixabay.com/audio/2022/10/30/audio_5c9e9d5f51.mp3';
+  function tryPlay(){
+    audio.play().catch(()=>{
+      document.addEventListener('click',()=>audio.play(),{once:true});
+      document.addEventListener('touchstart',()=>audio.play(),{once:true});
+    });
+  }
+  window.addEventListener('load',tryPlay);
+
+})();
+</script>
+</body>
+</html>

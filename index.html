@@ -1,46 +1,141 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dear Sumerah</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dear Sumerah</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4af37;--gold2:#f0d060;--rose:#c0392b;--rose2:#e74c3c;--cream:#f0e6d3}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:#000;color:var(--cream);font-family:'Crimson Pro',serif;cursor:none}
+
+/* CURSOR */
+#cur{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#curR{width:28px;height:28px;border:1px solid rgba(231,76,60,.6);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .18s ease}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* STARS */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+
+/* PETALS */
+#petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.petal{position:absolute;background:radial-gradient(ellipse at 40% 30%,#e8a0a0,#6b0a0a);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{opacity:0;transform:translateY(-40px) rotate(0deg)}5%{opacity:.6}50%{transform:translateY(50vh) rotate(300deg) translateX(15px)}90%{opacity:.25}100%{opacity:0;transform:translateY(108vh) rotate(580deg) translateX(-10px)}}
+
+/* FLOAT BG NAME */
+.float-name{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0;overflow:hidden}
+.float-name span{font-family:'Dancing Script',cursive;font-size:clamp(6rem,20vw,16rem);color:transparent;-webkit-text-stroke:1px rgba(212,175,55,.055);white-space:nowrap;letter-spacing:.04em;user-select:none;animation:floatDrift 20s ease-in-out infinite}
+@keyframes floatDrift{0%,100%{transform:translateY(0) rotate(-4deg) scale(1)}33%{transform:translateY(-26px) rotate(-2deg) scale(1.015)}66%{transform:translateY(18px) rotate(-5deg) scale(.985)}}
+
+/* TULIP */
+#tulip-wrap{position:fixed;bottom:-8px;left:50%;transform:translateX(-50%);z-index:10;pointer-events:none;display:flex;flex-direction:column;align-items:center}
+#tulip{animation:tulipSpin 14s linear infinite;transform-origin:center bottom;filter:drop-shadow(0 0 14px rgba(231,76,60,.45))}
+#tulip-shadow{width:28px;height:5px;background:radial-gradient(ellipse,rgba(192,57,43,.3),transparent 70%);margin-top:-3px;animation:shadowPulse 14s linear infinite}
+@keyframes tulipSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.45}50%{transform:scaleX(.5);opacity:.15}}
+
+/* BACKGROUNDS */
+.bg-layer{position:fixed;inset:0;z-index:0;opacity:0;transition:opacity 1.1s ease;pointer-events:none}
+.bg-layer.visible{opacity:1}
+.bg-0{background:radial-gradient(ellipse at 50% 30%,#1c0000 0%,#000 65%)}
+.bg-1{background:radial-gradient(ellipse at 20% 70%,#0c0018 0%,#000 65%)}
+.bg-2{background:radial-gradient(ellipse at 80% 30%,#001018 0%,#000 65%)}
+.bg-3{background:radial-gradient(ellipse at 30% 50%,#100005 0%,#000 65%)}
+.bg-4{background:radial-gradient(ellipse at 70% 70%,#0a0a00 0%,#000 65%)}
+.bg-5{background:radial-gradient(ellipse at 50% 50%,#120015 0%,#000 65%)}
+.bg-6{background:radial-gradient(ellipse at 50% 40%,#180005 0%,#000 60%)}
+
+/* APP / PAGES */
+#app{position:relative;z-index:2;width:100%;height:100%}
+.page{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(2rem,5vw,4rem) clamp(1.5rem,7vw,5rem);text-align:center;opacity:0;pointer-events:none;transition:opacity .55s ease;overflow-y:auto}
+.page.active{opacity:1;pointer-events:all}
+.page-inner{display:flex;flex-direction:column;align-items:center;max-width:780px;width:100%;gap:.1rem}
+
+/* TYPOGRAPHY */
+.tag{font-family:'Cinzel',serif;font-size:clamp(.6rem,1.3vw,.78rem);letter-spacing:.5em;color:var(--gold);opacity:.7;text-transform:uppercase;margin-bottom:1.2rem}
+.hero-name{font-family:'Dancing Script',cursive;font-size:clamp(4.5rem,17vw,12rem);background:linear-gradient(140deg,var(--gold2),var(--gold),#8a6010);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:.95;margin-bottom:1.2rem;animation:nameGlow 4s ease-in-out infinite}
+@keyframes nameGlow{0%,100%{filter:drop-shadow(0 0 20px rgba(212,175,55,.4))}50%{filter:drop-shadow(0 0 60px rgba(212,175,55,.9))}}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.4vw,1.55rem);color:#c8a8a8;max-width:520px;line-height:1.75;margin-bottom:2.5rem}
+.gold-line{width:min(360px,80%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.5rem auto 1.8rem}
+.gold-line.short{width:min(220px,60%)}
+.chapter-label{font-family:'Cinzel',serif;font-size:clamp(.6rem,1.2vw,.72rem);letter-spacing:.55em;color:var(--gold);opacity:.55;text-transform:uppercase;margin-bottom:.8rem}
+.pg-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.9rem);color:var(--gold);letter-spacing:.05em;margin-bottom:.3rem}
+.pg-film{font-family:'Crimson Pro',serif;font-style:italic;font-size:clamp(.85rem,1.8vw,1.1rem);color:rgba(212,175,55,.55);letter-spacing:.08em;margin-bottom:.2rem}
+.pg-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.05rem,2.2vw,1.45rem);line-height:1.95;color:#ddd0c8;max-width:640px;margin:.5rem auto 1rem;border:none}
+.pg-quote em{color:var(--gold);font-style:normal}
+.pg-sub{font-family:'Cinzel',serif;font-size:clamp(.6rem,1.1vw,.7rem);letter-spacing:.2em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:2rem}
+
+/* LETTER */
+.letter-page{gap:1.5rem}
+.letter-box{border:1px solid rgba(212,175,55,.22);padding:clamp(1.8rem,4vw,3rem);position:relative;background:rgba(255,255,255,.018);max-width:660px;width:100%;backdrop-filter:blur(2px)}
+.letter-corner{position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;opacity:.45}
+.letter-corner.tl{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.letter-corner.tr{top:-1px;right:-1px;border-width:1px 1px 0 0}
+.letter-corner.bl{bottom:-1px;left:-1px;border-width:0 0 1px 1px}
+.letter-corner.br{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.letter-date{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:var(--gold);opacity:.45;text-transform:uppercase;margin-bottom:1.5rem}
+.letter-to{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--gold);margin-bottom:1rem}
+.letter-para{font-style:italic;font-size:clamp(.95rem,1.9vw,1.12rem);line-height:1.95;color:#d8c8c0;text-align:left;margin-bottom:1.1rem}
+.letter-sign{text-align:right;margin-top:1.5rem;font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--rose2)}
+
+/* FINAL */
+.final-page{gap:.8rem}
+.final-verse{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.15rem,2.6vw,1.9rem);line-height:2;color:#e0c8c8;max-width:640px}
+.final-verse em{color:var(--gold);font-style:normal}
+.final-name{font-family:'Dancing Script',cursive;font-size:clamp(4rem,13vw,9rem);background:linear-gradient(135deg,var(--rose2),var(--rose),#7a1010);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:redGlow 3s ease-in-out infinite}
+@keyframes redGlow{0%,100%{filter:drop-shadow(0 0 20px rgba(192,57,43,.45))}50%{filter:drop-shadow(0 0 55px rgba(192,57,43,.95))}}
+.final-tag{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase}
+
+/* CONTINUE BUTTON */
+.btn-cont{display:inline-flex;align-items:center;gap:.8rem;padding:.9rem 3rem;background:transparent;border:1px solid rgba(212,175,55,.5);color:var(--gold);font-family:'Cinzel',serif;font-size:clamp(.65rem,1.3vw,.8rem);letter-spacing:.35em;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:color .4s,border-color .4s,box-shadow .4s;margin-top:1.8rem}
+.btn-cont::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--rose),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.4,0,.2,1);z-index:0}
+.btn-cont:hover{color:#000;border-color:var(--gold);box-shadow:0 0 35px rgba(212,175,55,.25)}
+.btn-cont:hover::before{transform:scaleX(1)}
+.btn-cont .btn-text,.btn-cont .btn-arrow{position:relative;z-index:1}
+.btn-cont .btn-arrow{transition:transform .3s}
+.btn-cont:hover .btn-arrow{transform:translateX(6px)}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#0e0000 0%,#000 70%);z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+#loader.show{opacity:1;pointer-events:all}
+#heartCanvas{display:block;margin-bottom:1.6rem}
+.loader-word{font-family:'Cinzel',serif;font-size:clamp(.9rem,3vw,1.45rem);letter-spacing:.7em;text-transform:uppercase;color:var(--gold);white-space:nowrap;margin-bottom:1.4rem;padding-left:.7em}
+.loader-word span{display:inline-block;opacity:0;transform:translateY(14px) scale(.75);transition:opacity .22s,transform .22s}
+.loader-word span.show{opacity:1;transform:translateY(0) scale(1)}
+.loader-bar-wrap{width:min(240px,55vw);height:1px;background:rgba(212,175,55,.1);overflow:hidden}
+.loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--rose),var(--gold),var(--rose));background-size:200% 100%;transition:width .06s linear;animation:shimmer 1.4s linear infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.loader-sub{margin-top:1.1rem;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.3em;color:rgba(212,175,55,.28);text-transform:uppercase}
+
+/* PAGE ENTER */
+@keyframes pgUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@media(max-height:620px){.page{justify-content:flex-start;padding-top:2.5rem}}
+</style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div id="cur"></div>
 <div id="curR"></div>
-
-<!-- GRAIN -->
 <div class="grain"></div>
-
-<!-- STARS -->
 <canvas id="stars"></canvas>
-
-<!-- PETALS -->
 <div id="petals"></div>
-
-<!-- FLOATING BG NAME -->
 <div class="float-name"><span>Dear Sumerah</span></div>
 
 <!-- TULIP -->
 <div id="tulip-wrap">
   <div id="tulip">
-    <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg" width="64" height="96">
-      <!-- stem -->
+    <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg" width="60" height="90">
       <path d="M40 120 Q38 90 40 70" stroke="#2d5a27" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <!-- leaf -->
       <path d="M40 95 Q28 85 25 75 Q35 78 40 90" fill="#2d5a27" opacity="0.8"/>
-      <!-- petals back -->
       <ellipse cx="40" cy="52" rx="10" ry="22" fill="#c0392b" opacity="0.6" transform="rotate(-18,40,52)"/>
       <ellipse cx="40" cy="52" rx="10" ry="22" fill="#c0392b" opacity="0.6" transform="rotate(18,40,52)"/>
-      <!-- petals front -->
       <ellipse cx="40" cy="55" rx="9" ry="20" fill="#e74c3c" transform="rotate(-8,40,55)"/>
       <ellipse cx="40" cy="55" rx="9" ry="20" fill="#e74c3c" transform="rotate(8,40,55)"/>
       <ellipse cx="40" cy="53" rx="8" ry="21" fill="#ff6b6b"/>
-      <!-- shine -->
       <ellipse cx="37" cy="44" rx="3" ry="7" fill="rgba(255,255,255,0.2)" transform="rotate(-5,37,44)"/>
     </svg>
   </div>
@@ -49,12 +144,7 @@
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-rings">
-    <div class="lr lr1"></div>
-    <div class="lr lr2"></div>
-    <div class="lr lr3"></div>
-    <div class="loader-star">✦</div>
-  </div>
+  <canvas id="heartCanvas"></canvas>
   <div class="loader-word" id="loaderWord"></div>
   <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
   <div class="loader-sub">dil ki raahon mein...</div>
@@ -66,17 +156,11 @@
   <!-- PAGE 1 -->
   <div class="page active" data-bg="0">
     <div class="page-inner">
-      <p class="tag">✦ Ek Tarfa Ishq — Sirf Tere Liye ✦</p>
+      <p class="tag">✦ Sirf Tere Liye ✦</p>
       <h1 class="hero-name">Sumerah</h1>
       <div class="gold-line"></div>
-      <p class="hero-sub">
-        "Kuch ishq aisa hota hai jo kehta nahi —<br>
-        bas mehsoos karta hai, hamesha..."
-      </p>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aage Chal</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <p class="hero-sub">"Jo kabhi nahi kaha —<br>Yaha likh raha hu..."</p>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">➡️➡️l</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
@@ -84,21 +168,12 @@
   <div class="page" data-bg="1">
     <div class="page-inner">
       <p class="chapter-label">Chapter I</p>
-      <h2 class="pg-title">Kundan Ka Deewanapan</h2>
-      <p class="pg-film">— Raanjhanaa</p>
+      <h2 class="pg-title">What I did</h2>
+      <p class="pg-film">NOTHING?</p>
       <div class="gold-line short"></div>
-      <blockquote class="pg-quote">
-        "Ek taraf uska ghar, ek taraf mera ghar...<br>
-        aur beech mein khadi hai duniya —<br>
-        phir bhi main aata rahunga.<br><br>
-        Kyunki woh meri mohabbat nahi,<br>
-        woh meri <em>zindagi</em> hai."
-      </blockquote>
-      <p class="pg-sub">Woh jo haar ke bhi nahi ruka</p>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aage Chal</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <blockquote class="pg-quote">"Ye to nahi pata efforts kisko kehte hai ...<br>Fir bhi koshish krta hu —<br>Jab tune bataya Jishan ke bare me.<br><br>To shayad laga ki sb khatam hai,<br>Lekin firse aajata hu muh utha ke<em>BURA</em> bohot lagta hai."</blockquote>
+      <p class="pg-sub">Still trying my best🙂</p>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">Aage Chal</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
@@ -109,19 +184,9 @@
       <h2 class="pg-title">Qais Ka Junoon</h2>
       <p class="pg-film">— Laila Majnu</p>
       <div class="gold-line short"></div>
-      <blockquote class="pg-quote">
-        "Mohabbat mein nahi hai farq<br>
-        jeene aur marne ka —<br>
-        usi ko dekh kar jeete hain,<br>
-        jis <em>kafir</em> pe dam nikle.<br><br>
-        Laila mili ya nahi — duniya ki baat hai.<br>
-        Majnu ka ishq aaj bhi zinda hai."
-      </blockquote>
+      <blockquote class="pg-quote">"Mohabbat mein nahi hai farq<br>jeene aur marne ka —<br>usi ko dekh kar jeete hain,<br>jis <em>kafir</em> pe dam nikle.<br><br>Laila mili ya nahi — duniya ki baat hai.<br>Majnu ka ishq aaj bhi zinda hai."</blockquote>
       <p class="pg-sub">Woh jo duniya chhod ke bhi pyar nahi chhodta</p>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aage Chal</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">Aage Chal</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
@@ -132,18 +197,9 @@
       <h2 class="pg-title">Woh Jo Chup Raha</h2>
       <p class="pg-film">— Dil Se &amp; Kuch Kuch Hota Hai</p>
       <div class="gold-line short"></div>
-      <blockquote class="pg-quote">
-        "Main tujhse door kahin,<br>
-        ban ke koi anjaana...<br>
-        phir bhi tu hai wahan, main hoon yahaan.<br><br>
-        Pyar ka matlab sirf paana nahi —<br>
-        kabhi kabhi sirf <em>dekhte rehna</em> bhi kaafi hota hai."
-      </blockquote>
+      <blockquote class="pg-quote">"Main tujhse door kahin,<br>ban ke koi anjaana...<br>phir bhi tu hai wahan, main hoon yahaan.<br><br>Pyar ka matlab sirf paana nahi —<br>kabhi kabhi sirf <em>dekhte rehna</em> bhi kaafi hota hai."</blockquote>
       <p class="pg-sub">Woh aashiq jisne kaha nahi, par ruka nahi</p>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aage Chal</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">Aage Chal</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
@@ -151,24 +207,17 @@
   <div class="page" data-bg="4">
     <div class="page-inner letter-page">
       <div class="letter-box">
-        <div class="letter-corner tl"></div>
-        <div class="letter-corner tr"></div>
-        <div class="letter-corner bl"></div>
-        <div class="letter-corner br"></div>
+        <div class="letter-corner tl"></div><div class="letter-corner tr"></div>
+        <div class="letter-corner bl"></div><div class="letter-corner br"></div>
         <p class="letter-date">Aaj Bhi • Kal Bhi • Hamesha</p>
         <p class="letter-to">Sumerah,</p>
         <p class="letter-para">Tujhe kya pata ke subah uthte hi tera khayal aata hai. Na main bhoolne ki koshish karta hoon, na yaad karne ki — tu toh bas wahan hoti hai, beghair bulaye.</p>
         <p class="letter-para">Maine kabhi kaha nahi. Shayad kabhi keh bhi na sakoon. Par yeh alfaaz sirf itna kehna chahte hain — teri khushi meri dua hai. Teri muskaan meri neend se zyaada qeemti hai.</p>
         <p class="letter-para">Laila ke Qais ne duniya chhodi, Raanjha bana Ranjit — main itna deewaana nahi... par itna zaroor hoon ke tere bina yeh duniya thodi khali lagti hai.</p>
         <p class="letter-para">Jo tujhe khushi de, woh ho jaye. Bas.</p>
-        <div class="letter-sign">
-          <span>Tere Ek Tarfa Aashiq Ki Taraf Se ♥</span>
-        </div>
+        <div class="letter-sign"><span>Tere Ek Tarfa Aashiq Ki Taraf Se ♥</span></div>
       </div>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aage Chal</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">Aage Chal</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
@@ -178,31 +227,15 @@
       <p class="chapter-label">Falsafa</p>
       <h2 class="pg-title">Ek Tarfa Mohabbat</h2>
       <div class="gold-line short"></div>
-      <blockquote class="pg-quote">
-        Ek tarfa pyar sabse saaf hota hai.<br>
-        Ismein koi shart nahi, koi umeed nahi.<br><br>
-        Jo sachcha aashiq hota hai —<br>
-        woh apni mehbooba ki khushi ki dua karta hai,<br>
-        chahe uss khushi mein <em>uski jagah na ho</em>.<br><br>
-        Woh jo bol nahi saka, woh likh diya.<br>
-        Woh jo likh nahi saka, woh aankhon mein rakh liya.
-      </blockquote>
-      <button class="btn-cont" onclick="goNext()">
-        <span class="btn-text">Aakhri Baat</span>
-        <span class="btn-arrow">→</span>
-      </button>
+      <blockquote class="pg-quote">Ek tarfa pyar sabse saaf hota hai.<br>Ismein koi shart nahi, koi umeed nahi.<br><br>Jo sachcha aashiq hota hai —<br>woh apni mehbooba ki khushi ki dua karta hai,<br>chahe uss khushi mein <em>uski jagah na ho</em>.<br><br>Woh jo bol nahi saka, woh likh diya.<br>Woh jo likh nahi saka, woh aankhon mein rakh liya.</blockquote>
+      <button class="btn-cont" onclick="goNext()"><span class="btn-text">Aakhri Baat</span><span class="btn-arrow">→</span></button>
     </div>
   </div>
 
   <!-- PAGE 7: FINAL -->
   <div class="page" data-bg="6">
     <div class="page-inner final-page">
-      <p class="final-verse">
-        Tujhe paana agar naseeb mein nahi,<br>
-        toh teri <em>khushi</em> hi meri manzil hai.<br>
-        Tujhe dekhna, tujhe muskurate dekhna —<br>
-        yahi kaafi hai mere liye,
-      </p>
+      <p class="final-verse">Tujhe paana agar naseeb mein nahi,<br>toh teri <em>khushi</em> hi meri manzil hai.<br>Tujhe dekhna, tujhe muskurate dekhna —<br>yahi kaafi hai mere liye,</p>
       <h1 class="final-name">Sumerah</h1>
       <p class="final-tag">— Hamesha &nbsp;•&nbsp; Har Lamhe &nbsp;•&nbsp; Besharat ♥</p>
     </div>
@@ -210,6 +243,86 @@
 
 </div><!-- /app -->
 
-<script src="main.js"></script>
-</body>
-</html>
+<script>
+(function(){
+  'use strict';
+
+  /* CURSOR */
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  document.addEventListener('mousemove',e=>{
+    cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+    curR.style.left=e.clientX+'px';curR.style.top=e.clientY+'px';
+  });
+
+  /* BACKGROUNDS */
+  const bgLayers=[];
+  for(let i=0;i<7;i++){
+    const d=document.createElement('div');
+    d.className=`bg-layer bg-${i}`;
+    document.body.appendChild(d);
+    bgLayers.push(d);
+  }
+  bgLayers[0].classList.add('visible');
+  function showBg(i){bgLayers.forEach((el,j)=>el.classList.toggle('visible',j===i));}
+
+  /* STARS */
+  const canvas=document.getElementById('stars'),ctx=canvas.getContext('2d');
+  let stars=[];
+  function resizeCanvas(){
+    canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+    stars=Array.from({length:140},()=>({
+      x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+      r:Math.random()*1.3+0.2,a:Math.random()*Math.PI*2,
+      spd:Math.random()*0.008+0.002,
+      col:Math.random()>.7?'rgba(192,57,43,':'rgba(212,175,55,'
+    }));
+  }
+  function drawStars(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s=>{
+      s.a+=s.spd;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col+(0.1+0.28*Math.abs(Math.sin(s.a)))+')';ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+  resizeCanvas();drawStars();
+  window.addEventListener('resize',resizeCanvas);
+
+  /* PETALS */
+  const pc=document.getElementById('petals');
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');p.className='petal';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(9+Math.random()*14)+'s';
+    p.style.animationDelay=(Math.random()*24)+'s';
+    p.style.width=(9+Math.random()*9)+'px';
+    p.style.height=(13+Math.random()*12)+'px';
+    pc.appendChild(p);
+  }
+
+  /* ========== HEART FIRE ANIMATION ========== */
+  function runHeartAnim(){
+    const hc=document.getElementById('heartCanvas');
+    const W=hc.width=Math.min(window.innerWidth*0.65,280);
+    const H=hc.height=W*0.92;
+    const hx=hc.getContext('2d');
+    const cx=W/2,cy=H/2+H*0.04,sc=W/38;
+
+    const STEPS=320;
+    const pts=[];
+    for(let i=0;i<=STEPS;i++){
+      const t=(Math.PI/2)+(i/STEPS)*Math.PI*2;
+      const x=16*Math.pow(Math.sin(t),3);
+      const y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+      pts.push({x:cx+x*sc,y:cy-y*sc});
+    }
+
+    let head=0,animId=null,done=false,glowT=0;
+    const SPEED=4,TRAIL=28;
+
+    function frame(){
+      hx.clearRect(0,0,W,H);
+
+      /* dim base trail */
+      if(head>1){
+        hx.beginPath();hx.moveTo(pts[0].x,pts[0].

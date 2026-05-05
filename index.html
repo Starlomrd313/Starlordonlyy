@@ -18,6 +18,7 @@
             color: #ffffff;
             position: relative;
             min-height: 100vh;
+            line-height: 1.6;
         }
 
         /* Galaxy Background */
@@ -90,118 +91,146 @@
         }
 
         .avatar {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b9d, #54a0ff);
+            background: linear-gradient(135deg, #ff6b9d, #54a0ff, #ff9ff3);
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite, avatarFloat 4s ease-in-out infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
+            font-size: 90px;
             margin-bottom: 30px;
             position: relative;
-            animation: avatarFloat 4s ease-in-out infinite;
-            box-shadow: 0 20px 60px rgba(84,160,255,0.4);
+            box-shadow: 0 25px 70px rgba(84,160,255,0.5);
         }
 
         .avatar::before {
-            content: '✨';
-            position: absolute;
-            font-size: 40px;
-            animation: rotate 10s linear infinite;
+            content: 'S';
+            font-size: 100px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #fff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 2;
+            position: relative;
         }
 
         .name {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(3.2rem, 9vw, 5.5rem);
             background: linear-gradient(135deg, #ffffff 0%, #ff6b9d 50%, #54a0ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
         .subtitle {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             opacity: 0.9;
             margin-bottom: 40px;
             animation: fadeInUp 1s ease-out 0.5s both;
+            max-width: 500px;
         }
 
         .stats {
             display: flex;
-            gap: 40px;
+            gap: 50px;
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 1s ease-out 1s both;
+            margin-top: 30px;
         }
 
         .stat {
             text-align: center;
+            padding: 20px;
         }
 
         .stat-number {
             display: block;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             background: linear-gradient(135deg, #ff6b9d, #54a0ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        /* Thoughts */
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* Thoughts Section - MORE TEXTS */
         .thoughts {
-            padding: 100px 20px;
-            max-width: 800px;
+            padding: 120px 30px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
 
         .thought-title {
-            font-size: 3rem;
-            margin-bottom: 60px;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 70px;
             background: linear-gradient(135deg, #ffffff 0%, #ff6b9d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 600;
         }
 
         .thought-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 20px 0;
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 25px 0;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(60px) scale(0.95);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .thought-card.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .thought-card h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #ff6b9d;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
-        /* Timeline */
+        .thought-card p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline - MORE EMOTIONAL */
         .timeline {
-            padding: 100px 20px;
-            max-width: 700px;
+            padding: 120px 30px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .timeline-title {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             background: linear-gradient(135deg, #ffffff 0%, #ff6b9d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -209,87 +238,137 @@
 
         .timeline-item {
             display: flex;
-            margin-bottom: 50px;
+            align-items: center;
+            margin-bottom: 70px;
             opacity: 0;
-            animation: slideIn 1s ease-out forwards;
+            transform: translateX(-60px);
+            animation: slideInLeft 1.2s ease-out forwards;
+            gap: 30px;
         }
 
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.9s; }
+
         .timeline-dot {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             background: linear-gradient(135deg, #ff6b9d, #54a0ff);
             border-radius: 50%;
-            margin: 0 20px;
             flex-shrink: 0;
+            position: relative;
             animation: dotPulse 2s infinite;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,107,157,0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringExpand 2s infinite;
         }
 
         .timeline-content {
             background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 35px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
             flex: 1;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .timeline-content h4 {
             color: #ff6b9d;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 600;
         }
 
-        /* Final */
+        .timeline-content p {
+            opacity: 0.9;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Final Section */
         .final {
-            padding: 120px 20px;
+            padding: 150px 30px;
             text-align: center;
         }
 
         .final-card {
             background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 60px 40px;
-            border: 1px solid rgba(255,255,255,0.15);
-            max-width: 600px;
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 80px 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            max-width: 700px;
             margin: 0 auto;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
 
         .final-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #ff6b9d;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .final-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 18px 40px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 500;
             cursor: pointer;
-            margin: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #ff6b9d, #c44569);
             color: white;
-            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+            box-shadow: 0 15px 45px rgba(255,107,157,0.4);
         }
 
         .btn-secondary {
             background: rgba(255,255,255,0.15);
             color: #ff6b9d;
-            border: 2px solid rgba(255,107,157,0.3);
+            border: 2px solid rgba(255,107,157,0.4);
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255,107,157,0.5);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255,107,157,0.6);
         }
 
-        /* Floating Hearts */
+        /* Floating Elements */
         .hearts {
             position: fixed;
             top: 0;
@@ -302,8 +381,8 @@
 
         .heart {
             position: absolute;
-            font-size: 20px;
-            animation: heartFloat 6s linear infinite;
+            font-size: 22px;
+            animation: heartFloat 7s linear infinite;
         }
 
         /* Animations */
@@ -313,18 +392,23 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         @keyframes avatarFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.02); }
         }
 
         @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 10px #ff6b9d); }
-            to { filter: drop-shadow(0 0 20px #54a0ff); }
+            from { filter: drop-shadow(0 0 15px #ff6b9d); }
+            to { filter: drop-shadow(0 0 30px #54a0ff); }
         }
 
         @keyframes starMove {
@@ -334,39 +418,39 @@
 
         @keyframes nebulaFloat {
             0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.1) translateY(-30px); }
+            50% { transform: scale(1.15) translateY(-40px); }
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes slideIn {
+        @keyframes slideInLeft {
             to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes dotPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,107,157,0.7); }
+            50% { transform: scale(1.3); box-shadow: 0 0 0 15px rgba(255,107,157,0); }
+        }
+
+        @keyframes ringExpand {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
         }
 
         @keyframes heartFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120px) rotate(720deg); opacity: 0; }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .stats { gap: 20px; }
-            .timeline-item { flex-direction: column; align-items: center; text-align: center; }
-            .timeline-dot { margin: 20px 0; }
+            .stats { gap: 25px; }
+            .timeline-item { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+                gap: 20px;
+            }
+            .timeline-dot { order: -1; }
+            .final-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -384,75 +468,117 @@
     <div class="container">
         <!-- Hero -->
         <section class="hero">
-            <div class="avatar">S</div>
+            <div class="avatar"></div>
             <h1 class="name">Sumerah</h1>
-            <p class="subtitle">Someone Special ✨</p>
+            <p class="subtitle">
+                <strong>Hum abhi tak mile nahi...</strong><br>
+                Fir bhi teri muskurahat ne dil chhu liya ✨
+            </p>
             <div class="stats">
                 <div class="stat">
-                    <span class="stat-number">365</span>
-                    <span>Days Admired</span>
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Khoobsurat Khayal</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">∞</span>
-                    <span>Beautiful Moments</span>
+                    <span class="stat-number">365+</span>
+                    <span class="stat-label">Din Se Yaadein</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">🌟</span>
+                    <span class="stat-label">Special Feeling</span>
                 </div>
             </div>
         </section>
 
-        <!-- Thoughts -->
+        <!-- Thoughts - 5 CARDS NOW! -->
         <section class="thoughts">
-            <h2 class="thought-title">My Thoughts</h2>
+            <h2 class="thought-title">Jo Dil Se Nikla</h2>
+            
             <div class="thought-card active" onclick="nextThought()">
-                <h3>Tu ek khubsurat khwab hai</h3>
-                <p>Your smile brightens even the darkest days. Grateful to have known you ✨</p>
+                <h3>Door Se Hi Pyaar</h3>
+                <p>Hum abhi tak mile nahi, fir bhi teri ek jhalak ne zindagi badal di. 
+                Teri muskurahat door se hi itni khubsurat lagti hai ✨</p>
             </div>
+
             <div class="thought-card" onclick="nextThought()">
-                <h3>Your grace inspires</h3>
-                <p>تمہاری شخصیت بہت عمدہ ہے۔ آپ کی شخصیت مجھے متاثر کرتی ہے 💫</p>
+                <h3>Ek Nazar Ka Deewana</h3>
+                <p>Your grace and simplicity inspire me every day. 
+                تمہاری سادگی اور حسن نے مجھے موہ لیا ہے 💫</p>
             </div>
+
             <div class="thought-card" onclick="nextThought()">
-                <h3>Always Admired</h3>
-                <p>Har pal teri yaadon mein khoya rehta hoon. You mean so much ✨</p>
+                <h3>Sabse Khaas Ehsaas</h3>
+                <p>Har roz teri yaadon mein khoya rehta hun. 
+                Ye feeling bohot khaas hai jo sirf tu hi de sakti hai 🌟</p>
+            </div>
+
+            <div class="thought-card" onclick="nextThought()">
+                <h3>Duaon Mein Yaad</h3>
+                <p>Har dua mein teri khushi mangta hun. 
+                Teri zindagi mein hamesha khushiyan ho 💝</p>
+            </div>
+
+            <div class="thought-card" onclick="nextThought()">
+                <h3>Respect & Admiration</h3>
+                <p>I respect you deeply and admire your beautiful soul. 
+                Thankful for this pure feeling ✨</p>
             </div>
         </section>
 
-        <!-- Timeline -->
+        <!-- Timeline - 4 ITEMS NOW! -->
         <section class="timeline">
-            <h2 class="timeline-title">Moments Remembered</h2>
+            <h2 class="timeline-title">Yaadon Ki Lakeerein</h2>
+            
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h4>First Impression</h4>
-                    <p>Pehli mulaqaat ne dil chhu liya ✨</p>
+                    <h4>👀 Pahli Nazar</h4>
+                    <p>Pehli baar door se dekha tha... dil ruk gaya tha usi pal 💫</p>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h4>Every Smile</h4>
-                    <p>Your every smile became my treasure 💎</p>
+                    <h4>💭 Roz Ka Khayal</h4>
+                    <p>Har subah uthkar pehla khayal tera hi aata hai 🌅</p>
                 </div>
             </div>
+
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h4>Always Grateful</h4>
-                    <p>Thankful for the light you bring 🌟</p>
+                    <h4>✨ Door Ki Muskurahat</h4>
+                    <p>Door se dekhi teri smile... zindagi bhar yaad rahegi 💎</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>🌟 Hamesha Ki Dua</h4>
+                    <p>Hum mile ya na mile... teri khushi meri dua hai 🙏</p>
                 </div>
             </div>
         </section>
 
-        <!-- Final -->
+        <!-- Final Message -->
         <section class="final">
             <div class="final-card">
-                <h2 class="final-title">A Small Token</h2>
-                <p>This website is my way of saying thank you for being you ✨</p>
-                <button class="btn btn-primary" onclick="starShower()">
-                    <i style="margin-right: 8px;">✨</i>Magic
-                </button>
-                <button class="btn btn-secondary" onclick="showMessage()">
-                    <i style="margin-right: 8px;">💫</i>Gratitude
-                </button>
+                <h2 class="final-title">Ek Chhota Sa Gift</h2>
+                <p class="final-subtitle">
+                    Ye website banayi hai sirf tere liye... <br>
+                    <strong>Hum abhi tak mile nahi,</strong> fir bhi tune itna khaas ehsaas diya 💖<br>
+                    Bas itna hi kehna chahta hun... <em>Thank You Sumerah</em>
+                </p>
+                <div class="final-buttons">
+                    <button class="btn btn-primary" onclick="starShower()">
+                        ✨ Magic Moment
+                    </button>
+                    <button class="btn btn-secondary" onclick="showMessage()">
+                        💝 My Gratitude
+                    </button>
+                </div>
             </div>
         </section>
     </div>
@@ -467,45 +593,45 @@
             thoughts[currentThought].classList.add('active');
         }
 
-        // Auto rotate thoughts
-        setInterval(nextThought, 4000);
+        // Auto rotate every 5 seconds
+        setInterval(nextThought, 5000);
 
-        // Floating Hearts
-        function createHeart() {
+        // Floating Hearts/Stars
+        function createFloat() {
+            const types = ['💖','💕','✨','💫','🌟','💎'];
             const heart = document.createElement('div');
-            heart.innerHTML = ['💖','💕','💝','✨'][Math.floor(Math.random()*4)];
+            heart.innerHTML = types[Math.floor(Math.random()*types.length)];
             heart.className = 'heart';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
             document.getElementById('hearts').appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 7000);
+            setTimeout(() => heart.remove(), 8000);
         }
 
-        setInterval(createHeart, 800);
+        setInterval(createFloat, 600);
 
         // Star Shower
         function starShower() {
-            for(let i = 0; i < 60; i++) {
+            for(let i = 0; i < 80; i++) {
                 setTimeout(() => {
                     const star = document.createElement('div');
-                    star.innerHTML = '✨';
+                    star.innerHTML = ['✨','💫','🌟'][Math.floor(Math.random()*3)];
                     star.style.cssText = `
                         position: fixed;
                         left: ${Math.random() * 100}vw;
-                        top: -20px;
-                        font-size: ${Math.random() * 20 + 10}px;
+                        top: -30px;
+                        font-size: ${Math.random() * 25 + 15}px;
                         pointer-events: none;
                         z-index: 100;
-                        animation: starFall ${Math.random() * 3 + 2}s linear forwards;
+                            animation: starFall ${Math.random() * 4 + 2.5}s linear forwards;
                     `;
                     document.body.appendChild(star);
-                    setTimeout(() => star.remove(), 5000);
-                }, i * 40);
+                    setTimeout(() => star.remove(), 6000);
+                }, i * 35);
             }
         }
 
-        // Gratitude Message
+        // Special Message
         function showMessage() {
             const msg = document.createElement('div');
             msg.style.cssText = `
@@ -513,60 +639,72 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                background: rgba(255,255,255,0.1);
-                backdrop-filter: blur(25px);
-                padding: 40px 50px;
-                border-radius: 20px;
-                border: 1px solid rgba(255,255,255,0.2);
+                background: rgba(255,255,255,0.12);
+                backdrop-filter: blur(30px);
+                padding: 50px 60px;
+                border-radius: 25px;
+                border: 1px solid rgba(255,255,255,0.25);
                 text-align: center;
                 z-index: 1000;
-                font-size: 1.3rem;
-                max-width: 350px;
-                animation: msgPop 0.5s ease-out;
+                font-size: 1.4rem;
+                max-width: 450px;
+                box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+                animation: msgPop 0.6s ease-out;
             `;
             msg.innerHTML = `
-                <h3 style="color: #ff6b9d; margin-bottom: 15px;">Thank You ✨</h3>
-                <p style="opacity: 0.9; line-height: 1.6;">For bringing light into my world</p>
+                <h3 style="color: #ff6b9d; margin-bottom: 20px; font-size: 2.2rem;">Deep Respect ✨</h3>
+                <p style="opacity: 0.95; line-height: 1.7; margin-bottom: 20px;">
+                    Teri personality ne sikhaya hai ki 
+                    <strong>sachcha ehsaas door se bhi mehsoos hota hai</strong>
+                </p>
+                <p style="font-size: 1.1rem; opacity: 0.9; font-style: italic;">
+                    Always in my prayers 💝
+                </p>
             `;
             document.body.appendChild(msg);
-            setTimeout(() => msg.remove(), 3000);
+            setTimeout(() => msg.remove(), 4500);
         }
 
-        // Add missing animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes starFall {
-                0% { opacity: 1; transform: translateY(0) rotate(0deg); }
-                100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
-            }
-            @keyframes msgPop {
-                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            }
-            .timeline-item:nth-child(1) { animation-delay: 0.2s; }
-            .timeline-item:nth-child(2) { animation-delay: 0.4s; }
-            .timeline-item:nth-child(3) { animation-delay: 0.6s; }
-        `;
-        document.head.appendChild(style);
-
-        // Mouse trail
+        // Mouse Sparkle Trail
         document.addEventListener('mousemove', (e) => {
-            if(Math.random() > 0.9) {
+            if(Math.random() > 0.88) {
                 const sparkle = document.createElement('div');
                 sparkle.innerHTML = '✨';
                 sparkle.style.cssText = `
                     position: fixed;
                     left: ${e.clientX}px;
                     top: ${e.clientY}px;
-                    font-size: 12px;
+                    font-size: 14px;
                     pointer-events: none;
                     z-index: 50;
-                    animation: sparkleFade 1s ease-out forwards;
+                    animation: sparkleFade 1.2s ease-out forwards;
                 `;
                 document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 1000);
+                setTimeout(() => sparkle.remove(), 1200);
             }
         });
+
+        // Add sparkle animation
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkleFade {
+                0% { opacity: 1; transform: scale(1) rotate(0deg); }
+                100% { opacity: 0; transform: scale(1.5) rotate(180deg); }
+            }
+            @keyframes starFall {
+                0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+                100% { opacity: 0; transform: translateY(100vh) rotate(1080deg); }
+            }
+            @keyframes msgPop {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+                100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+
+        // Initial active thought
+        thoughts[0].classList.add('active');
     </script>
 </body>
 </html>
+

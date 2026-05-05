@@ -3,95 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumerah - My Forever Love ❤️</title>
+    <title>For Sumerah ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Animated Background Hearts -->
-    <div class="hearts-container" id="hearts"></div>
-    
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Main Content -->
-    <div class="container">
-        <div class="hero">
-            <div class="profile-pic">
-                <div class="glow-ring"></div>
-                <i class="fas fa-heart"></i>
-            </div>
-            
-            <h1 class="name">सुमेराह ❤️</h1>
-            <p class="subtitle">My Sunshine, My Everything</p>
-            
-            <div class="love-messages">
-                <div class="message active" data-lang="hi">
-                    <h2>तुम्हारी मुस्कान में खो जाना चाहता हूँ</h2>
-                    <p>हर पल तुम्हारे ख्वाबों में जीना चाहता हूँ 💕</p>
-                </div>
-                
-                <div class="message" data-lang="ur">
-                    <h2>تم میری زندگی کی روشنی ہو</h2>
-                    <p>تمہارے بغیر یہ دل اداس رہتا ہے 💖</p>
-                </div>
-                
-                <div class="message" data-lang="en">
-                    <h2>You are my heartbeat</h2>
-                    <p>Every moment with you feels like a dream 💝</p>
-                </div>
-            </div>
-
-            <div class="cta-buttons">
-                <button class="btn primary" onclick="scrollToStory()">
-                    <i class="fas fa-play"></i> Our Story
-                </button>
-                <button class="btn secondary" onclick="toggleMessages()">
-                    <i class="fas fa-exchange-alt"></i> More Love
-                </button>
-            </div>
-        </div>
-
-        <!-- Love Story Section -->
-        <div class="story-section" id="story">
-            <h2><i class="fas fa-book-open"></i> हमारी Love Story</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="date">पहली नज़र 💫</div>
-                    <p>जब तुम्हारी आँखों में खो गया था मैं...</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="date">हर रोज़ 💭</div>
-                    <p>तुम्हारे ख्यालों में खोया रहता हूँ</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="date">हमेशा के लिए 💍</div>
-                    <p>तुम्हारी मुस्कान के कायल हूँ मैं</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Forever Section -->
-        <div class="forever-section">
-            <div class="promise">
-                <h3>तुम्हारे बिना अधूरा हूँ मैं</h3>
-                <div class="promise-text">
-                    <span>सदा 💖</span>
-                    <span>हमेशा 💕</span>
-                    <span>फिरदा 💝</span>
-                </div>
-            </div>
-        </div>
+    <!-- Multi-Layer Parallax Galaxy -->
+    <div class="galaxy-bg">
+        <div class="stars"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+        <div class="constellation"></div>
     </div>
 
-    <!-- Music Player -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-    </audio>
-    <button class="music-toggle" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
-    </button>
+    <!-- Particle System -->
+    <canvas id="particles" class="particle-canvas"></canvas>
+
+    <div class="main-container">
+        <!-- Hero -->
+        <section class="hero-section parallax" data-speed="0.1">
+            <div class="hero-content">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <div class="avatar-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" alt="Sumerah">
+                    </div>
+                    <div class="status-indicator">
+                        <div class="pulse-ring"></div>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <h1 class="hero-title">Sumerah</h1>
+                <p class="hero-subtitle">Someone Special ✨</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">365</span>
+                        <span class="stat-label">Days Admired</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Beautiful Moments</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thoughts Section -->
+        <section class="thoughts-section parallax" data-speed="0.3">
+            <h2 class="section-title">My Thoughts</h2>
+            <div class="thoughts-carousel">
+                <div class="thought-card active">
+                    <h3>Tu ek khubsurat khwab hai</h3>
+                    <p>Your smile brightens even the darkest days. Grateful to have known you ✨</p>
+                </div>
+                <div class="thought-card">
+                    <h3>Your grace inspires</h3>
+                    <p>تمہاری شخصیت بہت عمدہ ہے۔ آپ کی شخصیت مجھے متاثر کرتی ہے 💫</p>
+                </div>
+                <div class="thought-card">
+                    <h3>Always Admired</h3>
+                    <p>Har pal teri yaadon mein khoya rehta hoon. You mean so much ✨</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline-section parallax" data-speed="0.4">
+            <h2 class="section-title">Moments Remembered</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>First Impression</h4>
+                    <p>Pehli mulaqaat ne dil chhu liya ✨</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Every Smile</h4>
+                    <p>Your every smile became my treasure 💎</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4>Always Grateful</h4>
+                    <p>Thankful for the light you bring 🌟</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Message -->
+        <section class="final-section parallax" data-speed="0.2">
+            <div class="final-card">
+                <h2>A Small Token</h2>
+                <p>This website is my way of saying thank you for being you ✨</p>
+                <div class="final-buttons">
+                    <button class="btn-primary" onclick="starShower()">
+                        <i class="fas fa-magic"></i> Magic
+                    </button>
+                    <button class="btn-secondary" onclick="showGratitude()">
+                        <i class="fas fa-heart"></i> Gratitude
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>

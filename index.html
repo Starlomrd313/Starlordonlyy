@@ -3,351 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Booth Project</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Floating Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .bg-animation span {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(233, 69, 96, 0.5);
-            border-radius: 50%;
-            animation: floatBubble 10s infinite;
-        }
-
-        .bg-animation span:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .bg-animation span:nth-child(2) { left: 20%; animation-delay: 2s; }
-        .bg-animation span:nth-child(3) { left: 30%; animation-delay: 4s; }
-        .bg-animation span:nth-child(4) { left: 40%; animation-delay: 1s; }
-        .bg-animation span:nth-child(5) { left: 50%; animation-delay: 3s; }
-        .bg-animation span:nth-child(6) { left: 60%; animation-delay: 5s; }
-        .bg-animation span:nth-child(7) { left: 70%; animation-delay: 2.5s; }
-        .bg-animation span:nth-child(8) { left: 80%; animation-delay: 1.5s; }
-        .bg-animation span:nth-child(9) { left: 90%; animation-delay: 3.5s; }
-
-        @keyframes floatBubble {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-100vh) scale(2); opacity: 0; }
-        }
-
-        /* Main Container */
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            animation: slideIn 1s ease-out;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        h1 {
-            color: #fff;
-            font-size: 28px;
-            margin-bottom: 10px;
-            animation: fadeInDown 1s ease-out 0.3s backwards;
-        }
-
-        p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            font-size: 14px;
-            animation: fadeInDown 1s ease-out 0.5s backwards;
-        }
-
-        @keyframes fadeInDown {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* Camera Frame */
-        .camera-frame {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto 20px;
-            border-radius: 20px;
-            overflow: hidden;
-            animation: zoomIn 0.8s ease-out 0.7s backwards;
-            border: 4px solid #e94560;
-            box-shadow: 0 0 30px rgba(233, 69, 96, 0.4);
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        video {
-            width: 100%;
-            display: block;
-            background: #000;
-        }
-
-        /* Overlay when loading */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 16px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .overlay.active {
-            opacity: 1;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(233, 69, 96, 0.3);
-            border-top-color: #e94560;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        canvas {
-            display: none;
-        }
-
-        /* Buttons */
-        .btn {
-            background: linear-gradient(45deg, #e94560, #ff6b6b);
-            border: none;
-            padding: 18px 50px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
-            animation: fadeInUp 1s ease-out 0.9s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(233, 69, 96, 0.5);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            background: #666;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        /* Status Message */
-        .status {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 14px;
-            display: none;
-        }
-
-        .status.success {
-            display: block;
-            background: rgba(76, 175, 80, 0.2);
-            border: 1px solid #4caf50;
-            color: #4caf50;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .status.error {
-            display: block;
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid #f44336;
-            color: #f44336;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+    <title>A Cinematic Gift</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-        <span></span>
+    <!-- Preloader -->
+    <div class="loader">
+        <div class="loader-text">Prepare for something beautiful...</div>
     </div>
 
-    <div class="container">
-        <h1>📸 Photo Booth</h1>
-        <p>Position yourself and click to capture!</p>
+    <!-- Music Toggle -->
+    <div class="music-toggle" id="musicBtn">
+        <div class="icon">♫</div>
+    </div>
 
-        <div class="camera-frame">
-            <video id="video" autoplay playsinline></video>
-            <div class="overlay" id="overlay">
-                <div class="loader"></div>
+    <!-- Aurora Backgrounds -->
+    <div class="aurora-wrap">
+        <div class="aurora a1"></div>
+        <div class="aurora a2"></div>
+        <div class="aurora a3"></div>
+    </div>
+
+    <!-- Intro Section -->
+    <section class="screen hero" id="hero">
+        <div class="hero-content">
+            <h1 class="glitch-text">For Someone Extraordinary</h1>
+            <p class="typewriter"></p>
+            <div class="btn-wrap">
+                <button class="cta-btn" id="startBtn">
+                    <span>Begin Journey</span>
+                    <div class="liquid"></div>
+                </button>
             </div>
         </div>
+    </section>
 
-        <canvas id="canvas"></canvas>
+    <!-- Section 1: The Welcome -->
+    <section class="screen section-welcome" id="welcome">
+        <div class="glass-card">
+            <h2>The Unexpected</h2>
+            <p>Some people enter our lives quietly, without announcement. They don't just fill a space; they expand the entire universe. This is a tribute to that expansion.</p>
+        </div>
+    </section>
 
-        <button class="btn" id="snapBtn">Click Picture 📷</button>
+    <!-- Section 2: Timeline -->
+    <section class="screen section-timeline" id="timeline">
+        <h2 class="section-title">The Journey So Far</h2>
+        <div class="timeline-container">
+            <div class="timeline-item" data-year="The First Hello">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>The First Hello</h3>
+                    <p>It started with a simple greeting, but the air in the room felt different. The gravity shifted.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-year="The Laughter">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>The Laughter</h3>
+                    <p>Moments where your joy became the soundtrack of the day. Unscripted, pure, infectious.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-year="The Comfort">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>The Comfort</h3>
+                    <p>You have a way of making the chaotic feel calm. A rare and priceless talent.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-year="The Presence">
+                <div class="dot"></div>
+                <div class="content">
+                    <h3>The Presence</h3>
+                    <p>The way you exist in this world leaves a mark. Subtle, elegant, and permanent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <div class="status" id="status"></div>
-    </div>
+    <!-- Section 3: Things Never Said -->
+    <section class="screen section-unsaid" id="unsaid">
+        <h2 class="section-title">Messages In The Dark</h2>
+        <div class="grid-cards">
+            <div class="card hidden-msg">
+                <div class="card-front">Touch to reveal</div>
+                <div class="card-back">Your kind eyes tell a story that words often fail to capture.</div>
+            </div>
+            <div class="card hidden-msg">
+                <div class="card-front">Touch to reveal</div>
+                <div class="card-back">In a world of noise, your silence is the most comforting sound.</div>
+            </div>
+            <div class="card hidden-msg">
+                <div class="card-front">Touch to reveal</div>
+                <div class="card-back">You make the ordinary feel like a scene from a classic film.</div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // ================= CONFIGURATION =================
-        // Replace these with your values from BotFather and userinfobot
-        const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';
-        const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID_HERE';
-        // ================================================
+    <!-- Section 4: Stars -->
+    <section class="screen section-stars" id="stars">
+        <canvas id="starCanvas"></canvas>
+        <div class="star-overlay">
+            <h2 class="section-title">Find A Star</h2>
+            <p>Click the constellations. Every star holds a thought.</p>
+        </div>
+    </section>
 
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const snapBtn = document.getElementById('snapBtn');
-        const overlay = document.getElementById('overlay');
-        const status = document.getElementById('status');
+    <!-- Section 5: Memory Room -->
+    <section class="screen section-memory" id="memory">
+        <h2 class="section-title">Memory Room</h2>
+        <div class="memory-deck">
+            <div class="memory-card" data-front="Memory I" data-back="Remember the time the sky turned pink? You pointed it out before anyone else did."></div>
+            <div class="memory-card" data-front="Memory II" data-back="The conversation we had about dreams. It felt like plotting a map to the stars."></div>
+            <div class="memory-card" data-front="Memory III" data-back="Just the quiet presence of knowing you exist makes the world feel safer."></div>
+        </div>
+    </section>
 
-        // Start Camera
-        async function startCamera() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        facingMode: 'user',
-                        width: { ideal: 640 },
-                        height: { ideal: 480 }
-                    }
-                });
-                video.srcObject = stream;
-            } catch (err) {
-                showStatus('Error: Camera not accessible!', 'error');
-                console.error(err);
-            }
-        }
+    <!-- Section 6: Why Special -->
+    <section class="screen section-why" id="why">
+        <div class="text-reveal-container">
+            <div class="line">You are a masterpiece in a gallery of prints.</div>
+            <div class="line">You carry light in your pockets.</div>
+            <div class="line">You make complexity look like poetry.</div>
+            <div class="line">And for that, today is yours.</div>
+        </div>
+    </section>
 
-        // Capture and Send
-        snapBtn.addEventListener('click', captureAndSend);
+    <!-- Section 7: Surprise -->
+    <section class="screen section-surprise" id="surprise">
+        <div class="surprise-content">
+            <h1 class="big-wish">Happy Birthday</h1>
+            <div class="firework" id="firework1"></div>
+            <div class="firework" id="firework2"></div>
+            <div class="firework" id="firework3"></div>
+        </div>
+    </section>
 
-        async function captureAndSend() {
-            if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE') {
-                showStatus('Please configure bot token in the code!', 'error');
-                return;
-            }
+    <!-- Final -->
+    <section class="screen final-screen">
+        <div class="final-message">
+            <p>May your year be as magical as you are.</p>
+            <span>- With Admiration</span>
+        </div>
+    </section>
 
-            // Show loading
-            overlay.classList.add('active');
-            snapBtn.disabled = true;
+    <!-- Hidden Audio -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mp3">
+    </audio>
 
-            // Capture frame
-            const context = canvas.getContext('2d');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            // Convert to image
-            canvas.toBlob(async (blob) => {
-                if (!blob) {
-                    showStatus('Error capturing image!', 'error');
-                    overlay.classList.remove('active');
-                    snapBtn.disabled = false;
-                    return;
-                }
-
-                try {
-                    await sendToTelegram(blob);
-                    showStatus('✅ Photo sent to Telegram successfully!', 'success');
-                } catch (error) {
-                    showStatus('Error: ' + error.message, 'error');
-                }
-
-                overlay.classList.remove('active');
-                snapBtn.disabled = false;
-            }, 'image/jpeg', 0.9);
-        }
-
-        async function sendToTelegram(photoBlob) {
-            const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('photo', photoBlob, 'photo.jpg');
-
-            const response = await fetch(
-                `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`,
-                {
-                    method: 'POST',
-                    body: formData
-                }
-            );
-
-            const data = await response.json();
-
-            if (!data.ok) {
-                throw new Error(data.description || 'Telegram API Error');
-            }
-
-            return data;
-        }
-
-        function showStatus(message, type) {
-            status.textContent = message;
-            status.className = 'status ' + type;
-        }
-
-        // Initialize
-        startCamera();
-    </script>
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

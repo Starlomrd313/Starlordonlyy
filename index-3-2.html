@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Happy Birthday Sumerah 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif}
+body{background:#0d0d1a;color:#fff;touch-action:manipulation}
+
+/* ═══ SCREENS ═══ */
+.screen{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  transition:opacity 0.8s ease;
+  overflow:hidden;
+}
+.screen.hidden{opacity:0;pointer-events:none}
+.screen.gone{display:none}
+#sc-main{
+  position:absolute !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  justify-content:flex-start !important;
+  align-items:stretch !important;
+}
+
+/* ═══ SCREEN 1: DARK ROOM ═══ */
+#sc-dark{background:#080810;z-index:100}
+#sc-dark canvas{position:absolute;inset:0;pointer-events:none}
+.dark-content{position:relative;z-index:5;text-align:center;padding:2rem}
+.dark-title{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.2rem,5vw,1.8rem);
+  color:rgba(255,255,255,0.2);
+  margin-bottom:3rem;
+  animation:gentlePulse 3s ease-in-out infinite;
+  letter-spacing:0.05em;
+}
+.candles-row{display:flex;gap:1.5rem;justify-content:center;margin-bottom:3rem}
+.candle{display:flex;flex-direction:column;align-items:center;cursor:pointer}
+.candle .flame{
+  width:14px;height:22px;
+  background:radial-gradient(ellipse at 50% 80%,#fff9c4,#ffb300,#ff6d00,transparent);
+  border-radius:50% 50% 30% 30%;
+  box-shadow:0 0 10px #ffb300,0 0 20px #ff6d00;
+  animation:flicker 0.25s ease-in-out infinite alternate;
+  transform-origin:bottom center;
+  transition:all 0.3s ease;
+}
+.candle .candle-body{
+  width:12px;height:40px;
+  background:linear-gradient(90deg,#fce4ec,#f48fb1,#fce4ec);
+  border-radius:4px 4px 2px 2px;
+}
+.candle.blown .flame{opacity:0;transform:scaleY(0)}
+.lights-btn{
+  padding:1rem 2.5rem;
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(255,255,255,0.25);
+  border-radius:60px;color:#fff;
+  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;
+  cursor:pointer;letter-spacing:0.05em;
+  transition:all 0.4s ease;
+  backdrop-filter:blur(8px);
+  animation:btnGlow 2s ease-in-out infinite;
+}
+.lights-btn:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.5);transform:scale(1.04)}
+
+/* ═══ SCREEN 2: LIGHTS ON ═══ */
+#sc-lights{
+  background:linear-gradient(180deg,#fff0f5 0%,#ffe4f0 50%,#ffd6e8 100%);
+  z-index:90;
+}
+.fairy-lights{
+  position:absolute;top:0;left:0;width:100%;
+  display:flex;justify-content:space-around;padding:0 0.5rem;
+  pointer-events:none;
+}
+.fairy-lights .wire{
+  position:absolute;top:18px;left:0;width:100%;height:2px;
+  background:rgba(80,60,60,0.35);z-index:1;
+}
+.bulb-wrap{display:flex;flex-direction:column;align-items:center;z-index:2;position:relative;top:4px}
+.bulb-stem{width:2px;height:14px;background:rgba(80,60,60,0.35)}
+.bulb{
+  width:22px;height:30px;border-radius:50% 50% 40% 40%;
+  box-shadow:0 0 12px currentColor,0 0 24px currentColor;
+  animation:bulbFlicker 1.5s ease-in-out infinite alternate;
+  position:relative;
+}
+.bulb::after{
+  content:'';position:absolute;top:3px;left:5px;
+  width:6px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.5);
+}
+.bulb-cap{width:14px;height:8px;background:rgba(60,50,50,0.5);border-radius:2px 2px 0 0;margin-top:-1px}
+.lights-content{
+  position:relative;
+  z-index:10;
+  text-align:center;
+  padding:2rem 1.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.4rem;
+  width:100%;
+  margin-top:2rem;
+}
+.lights-heading{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(2rem,8vw,3.5rem);
+  background:linear-gradient(135deg,#e91e8c,#ff6b9d,#ff9a3c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-size:200%;animation:shimmer 3s linear infinite;
+  filter:drop-shadow(0 2px 12px rgba(233,30,140,0.35));
+}
+.lights-sub{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1rem,3.5vw,1.4rem);
+  color:#c2185b;
+}
+.mood-btn{
+  padding:1rem 2.8rem;
+  background:linear-gradient(135deg,#e91e8c,#ff6b9d);
+  border:none;border-radius:60px;color:#fff;
+  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;box-shadow:0 6px 24px rgba(233,30,140,0.4);
+  transition:all 0.35s ease;
+  letter-spacing:0.05em;
+}
+.mood-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 32px rgba(233,30,140,0.5)}
+.confetti-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+
+/* ═══ SCREEN 3: CAKE ═══ */
+#sc-cake{
+  background:linear-gradient(180deg,#fff0f5 0%,#fce4ec 100%);
+  z-index:80;
+}
+.cake-screen-inner{
+  position:relative;z-index:5;text-align:center;
+  padding:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem;
+  width:100%;max-width:420px;
+}
+.cake-title{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(1.6rem,6vw,2.2rem);
+  color:#e91e8c;
+}
+.cake-sub{color:#ad1457;font-size:.9rem}
+.cake-box{
+  background:#fff;border-radius:24px;padding:1.5rem;
+  box-shadow:0 8px 32px rgba(233,30,140,0.15);
+  width:100%;position:relative;overflow:hidden;
+}
+.cake-box h3{font-size:1rem;font-weight:800;color:#333;margin-bottom:.4rem}
+.cake-box p{font-size:.8rem;color:#888;margin-bottom:1.2rem}
+.cake-container{
+  position:relative;width:200px;height:180px;margin:0 auto;
+}
+.cake-emoji-big{
+  font-size:5rem;
+  display:block;text-align:center;
+  animation:cakeBob 2s ease-in-out infinite;
+  filter:drop-shadow(0 8px 16px rgba(233,30,140,0.3));
+  user-select:none;
+}
+.cake-candles-top{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;
+}
+.ck-flame{
+  width:10px;height:16px;
+  background:radial-gradient(ellipse at 50% 80%,#fff,#ffb300,#ff6d00,transparent);
+  border-radius:50% 50% 30% 30%;
+  animation:flicker 0.2s ease-in-out infinite alternate;
+  box-shadow:0 0 6px #ffb300;
+  transition:all 0.4s ease;
+}
+.ck-body{width:8px;height:24px;background:linear-gradient(90deg,#fce4ec,#f48fb1);border-radius:3px}
+.ck-flame.out{opacity:0;transform:scaleY(0)}
+
+/* DRAG KNIFE */
+.knife-area{
+  position:absolute;inset:0;cursor:crosshair;z-index:10;
+}
+.drag-hint{
+  position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  background:#fff;border:1px solid #eee;border-radius:8px;
+  padding:.3rem .6rem;font-size:.72rem;font-weight:700;color:#555;
+  pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.08);
+  animation:hintBounce 1.5s ease-in-out infinite;
+}
+.knife-line{
+  position:absolute;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,transparent,rgba(233,30,140,0.6),transparent);
+  pointer-events:none;display:none;
+  transition:left 0.05s linear;
+}
+.cut-done-msg{
+  color:#e91e8c;font-weight:800;font-size:1.1rem;
+  display:none;margin-top:.5rem;animation:popIn 0.5s ease;
+}
+
+/* KNIFE SVG */
+.knife-wrap{
+  position:absolute;
+  left:-8px;top:5px;
+  width:44px;height:120px;
+  z-index:20;
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+  filter:drop-shadow(2px 4px 8px rgba(0,0,0,0.4));
+  transition:filter 0.2s ease;
+}
+.knife-wrap.cutting{
+  filter:drop-shadow(0 0 14px rgba(255,200,0,0.9)) drop-shadow(2px 4px 6px rgba(0,0,0,0.35));
+}
+.knife-wrap.done{
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+.knife-svg{width:100%;height:100%}
+
+/* MEME CATS */
+.meme-cats-top{
+  position:absolute;top:52px;left:0;width:100%;
+  display:flex;justify-content:space-around;align-items:flex-end;
+  padding:0 .5rem;z-index:3;pointer-events:none;
+}
+.meme-cat{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  animation:catBounce 0.5s cubic-bezier(.23,1,.32,1) both;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+}
+.meme-cat .cat-face{font-size:clamp(1.8rem,5vw,2.5rem);line-height:1}
+.meme-cat .cat-caption{
+  font-size:.52rem;font-weight:800;
+  background:rgba(0,0,0,0.7);color:#fff;
+  padding:.1rem .35rem;border-radius:3px;
+  letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;
+}
+.meme-cats-mid{
+  display:flex;gap:1rem;justify-content:center;
+  flex-wrap:wrap;margin:.3rem 0;pointer-events:none;
+}
+.meme-cat-mid{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  animation:catPop 0.5s cubic-bezier(.23,1,.32,1) both;
+}
+.meme-cat-mid .mcm-face{font-size:1.9rem;line-height:1}
+.meme-cat-mid .mcm-label{
+  font-size:.55rem;font-weight:800;
+  background:rgba(233,30,140,0.85);color:#fff;
+  padding:.1rem .38rem;border-radius:20px;
+  letter-spacing:.05em;white-space:nowrap;
+}
+.cat-corner{
+  position:absolute;font-size:2.2rem;
+  pointer-events:none;
+  animation:cornerCat 0.7s cubic-bezier(.23,1,.32,1) both;
+}
+.cat-bl{bottom:65px;left:8px;animation-delay:.25s}
+.cat-br{bottom:65px;right:8px;animation-delay:.45s;display:inline-block;transform:scaleX(-1)}
+
+@keyframes catBounce{from{opacity:0;transform:translateY(-25px) scale(.7)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes catPop{from{opacity:0;transform:scale(.4) rotate(-10deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes cornerCat{from{opacity:0;transform:scale(.3) rotate(15deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes catWobble{0%{transform:rotate(-3deg) scale(1)}100%{transform:rotate(3deg) scale(1.05)}}
+@keyframes stickerPop{0%{opacity:0;transform:scale(0) rotate(20deg)}60%{transform:scale(1.2)}100%{opacity:1;transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+/* HAPPY CAT BIG */
+.happy-cat-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-58%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  z-index:4;pointer-events:none;
+  animation:catBounce 0.6s cubic-bezier(.23,1,.32,1) both;
+}
+.happy-cat-gif{
+  width:clamp(100px,32vw,155px);height:auto;
+  border-radius:16px;
+  filter:drop-shadow(0 8px 24px rgba(233,30,140,0.45));
+  animation:catWobble 0.7s ease-in-out infinite alternate;
+}
+.happy-cat-label{
+  font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:clamp(.65rem,2.5vw,.9rem);
+  color:#e91e8c;
+  background:rgba(255,255,255,0.92);
+  padding:.25rem .7rem;border-radius:20px;
+  letter-spacing:.04em;
+  box-shadow:0 2px 10px rgba(233,30,140,0.2);
+}
+
+/* CAT STICKERS */
+.cat-sticker{
+  position:absolute;pointer-events:none;
+  border-radius:12px;opacity:0;
+  animation:stickerPop 0.5s cubic-bezier(.23,1,.32,1) both;
+  object-fit:contain;
+}
+.cs1{width:clamp(55px,15vw,80px);top:12%;left:4%;animation-delay:.25s}
+.cs2{width:clamp(45px,12vw,65px);top:15%;right:5%;animation-delay:.4s}
+.cs3{width:clamp(60px,16vw,85px);bottom:20%;left:3%;animation-delay:.55s}
+.cs4{width:clamp(50px,13vw,70px);bottom:18%;right:4%;animation-delay:.7s}
+
+/* LIGHTS CONTENT */
+.lights-heading-wrap{text-align:center}
+
+/* CRYING CAT */
+.crying-cat-wrap{
+  text-align:center;margin-bottom:.4rem;
+  animation:popIn 0.4s ease;
+}
+.crying-cat-gif{
+  width:clamp(65px,22vw,100px);height:auto;
+  border-radius:12px;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+.crying-msg{
+  font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:.88rem;color:#e91e8c;
+  margin-top:.3rem;
+  animation:shake 0.4s ease;
+}
+
+/* NO BTN teleport */
+.no-btn{
+  white-space:nowrap;
+  position:absolute !important;
+  right:-10px;
+  top:8px;
+  pointer-events:all;
+  z-index:1;
+}
+
+/* make-wish card */
+.wish-card{
+  background:#fff;border-radius:24px;padding:1.8rem;
+  box-shadow:0 8px 32px rgba(233,30,140,0.15);
+  width:100%;text-align:center;
+  display:none;
+}
+.wish-card.show{display:block;animation:popIn 0.6s ease}
+.wish-card img-placeholder{font-size:4rem;display:block;margin:0 auto .8rem}
+.wish-card h2{font-family:'Pacifico',cursive;font-size:1.6rem;color:#e91e8c;margin-bottom:.5rem}
+.wish-card p{color:#555;font-size:.9rem;margin-bottom:.4rem}
+.wish-card .small{color:#999;font-size:.8rem;margin-bottom:1.2rem}
+.wish-btn{
+  padding:.8rem 2rem;background:#e5e5e5;border:none;border-radius:50px;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;
+  color:#333;cursor:pointer;transition:all 0.35s ease;
+}
+.wish-btn:hover{background:#d0d0d0}
+.wish-btn.ready{
+  background:linear-gradient(135deg,#e91e8c,#ff6b9d);
+  color:#fff;box-shadow:0 4px 16px rgba(233,30,140,0.35);
+}
+.wish-btn.ready:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,30,140,0.45)}
+
+/* ═══ SCREEN 4: INTRO LETTER ═══ */
+#sc-intro{
+  background:linear-gradient(135deg,#ffe0f0 0%,#fff3e0 50%,#ffe0f0 100%);
+  z-index:70;
+}
+.intro-card{
+  background:#fff;border-radius:20px;padding:0;
+  box-shadow:0 12px 40px rgba(233,30,140,0.2);
+  width:90%;max-width:380px;overflow:hidden;
+}
+.card-topbar{
+  background:#f5f5f5;
+  padding:.6rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid #eee;
+}
+.dots{display:flex;gap:.4rem}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#ffbd2e}.dot.g{background:#28ca41}
+.card-filename{font-size:.72rem;color:#888;letter-spacing:.05em}
+.intro-body{padding:1.8rem;text-align:center}
+.intro-icon{font-size:4rem;display:block;margin:0 auto .8rem;animation:cakeBob 2s ease-in-out infinite}
+.intro-tag{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#e91e8c;margin-bottom:.8rem;display:block;
+}
+.intro-q{
+  font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:800;
+  color:#222;margin-bottom:1.5rem;
+}
+.btn-row{display:flex;gap:.8rem;justify-content:center}
+.yes-btn{
+  padding:.7rem 1.8rem;
+  background:linear-gradient(135deg,#e91e8c,#ff6b9d);
+  border:none;border-radius:50px;color:#fff;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
+  cursor:pointer;box-shadow:0 4px 16px rgba(233,30,140,0.35);
+  transition:all 0.3s ease;
+}
+.yes-btn:hover{transform:translateY(-2px) scale(1.05)}
+.no-btn{
+  padding:.7rem 1.4rem;
+  background:#f0f0f0;border:none;border-radius:50px;color:#888;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;
+  cursor:pointer;transition:all 0.3s ease;
+}
+.no-btn:hover{background:#e0e0e0;color:#e91e8c}
+
+/* ═══ SCREEN 5: FLIP WISHES ═══ */
+#sc-flip{
+  background:linear-gradient(180deg,#fff0f5 0%,#fce4ec 100%);
+  z-index:60;overflow-y:auto;
+}
+.flip-inner{
+  width:100%;max-width:440px;
+  padding:1.2rem 1.2rem 4rem;
+  margin:0 auto;
+}
+.flip-title{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(1.3rem,5vw,1.8rem);
+  color:#e91e8c;text-align:center;margin-bottom:.3rem;
+  padding-top:1rem;
+}
+.flip-sub{text-align:center;color:#888;font-size:.85rem;margin-bottom:1.2rem}
+.flip-cards{display:flex;flex-direction:column;gap:1rem}
+.flip-card{
+  background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:0 4px 20px rgba(233,30,140,0.1);
+  cursor:pointer;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  position:relative;
+}
+.flip-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(233,30,140,0.18)}
+.flip-card-front{
+  padding:0;position:relative;
+}
+.flip-card-img{
+  width:100%;height:140px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:4.5rem;
+  background:linear-gradient(135deg,#fce4ec,#fff3e0);
+  position:relative;overflow:hidden;
+}
+.flip-card-img .bg-pattern{
+  position:absolute;inset:0;opacity:0.08;
+  background:repeating-linear-gradient(45deg,#e91e8c 0,#e91e8c 1px,transparent 0,transparent 50%);
+  background-size:8px 8px;
+}
+.wish-tag{
+  position:absolute;top:.7rem;right:.7rem;
+  background:rgba(233,30,140,0.12);
+  color:#e91e8c;font-size:.72rem;font-weight:700;
+  padding:.2rem .5rem;border-radius:20px;
+  letter-spacing:.05em;
+}
+.flip-card-back{
+  display:none;padding:1.4rem;
+  background:linear-gradient(135deg,#fff0f5,#fff);
+}
+.flip-card.flipped .flip-card-front{display:none}
+.flip-card.flipped .flip-card-back{display:block;animation:popIn 0.4s ease}
+.flip-back-lang{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:.3rem}
+.flip-back-lang.ur{color:#e91e8c}
+.flip-back-lang.hi{color:#ff9800}
+.flip-back-lang.en{color:#7c4dff}
+.flip-back-text{
+  font-family:'Nunito',sans-serif;
+  font-size:.9rem;line-height:1.7;color:#444;
+  margin-bottom:.8rem;
+  padding-bottom:.8rem;
+  border-bottom:1px solid #f5f5f5;
+}
+.flip-back-text:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.flip-hint{text-align:center;font-size:.72rem;color:#bbb;padding:.6rem;letter-spacing:.05em}
+
+/* ═══ SCREEN 6: MAIN SITE ═══ */
+#sc-main{
+  overflow-y:auto;overflow-x:hidden;
+  background:linear-gradient(160deg,#1a0012 0%,#2a0820 40%,#1f0518 70%,#120010 100%);
+  z-index:50;
+  opacity:0;
+  pointer-events:none;
+  display:block;
+}
+#sc-main.active{opacity:1;pointer-events:all;}
+#bg-float{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#bg-float span{position:absolute;animation:floatUp linear infinite;opacity:0.07;user-select:none;pointer-events:none}
+#mBtn{
+  position:fixed;top:1rem;right:1rem;z-index:600;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,150,180,.12);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,150,180,.25);
+  color:#f9d4e8;font-size:1.1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s ease;
+}
+#mBtn:hover{background:rgba(255,150,180,.25);transform:scale(1.1)}
+
+/* MAIN SECTIONS */
+.msec{position:relative;padding:5rem 1.4rem 4rem;z-index:1;overflow:hidden;display:block;width:100%}
+.msec .container{max-width:960px;margin:0 auto;display:block}
+.sec-tag{display:block;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#ff9a9e;margin-bottom:.7rem;font-weight:700}
+.sec-title{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(1.6rem,5vw,2.8rem);
+  background:linear-gradient(135deg,#ff9a3c,#ff6b9d,#c44dff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-size:200%;animation:shimmer 4s linear infinite;
+  margin-bottom:1.8rem;line-height:1.3;
+}
+/* cards */
+.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;width:100%}
+.gcard{
+  background:rgba(255,150,180,.07);border:1px solid rgba(255,150,180,.12);
+  border-radius:18px;padding:1.5rem;transition:all .4s ease;
+}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(255,150,180,.3);box-shadow:0 10px 30px rgba(200,50,100,.15)}
+.gcard-lang{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#ff9a9e;margin-bottom:.6rem;font-weight:700}
+.gcard p{font-size:.97rem;line-height:1.82;color:rgba(255,215,230,.75)}
+
+/* notes grid */
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem;width:100%}
+.note-card{
+  cursor:pointer;
+  background:rgba(255,150,180,.07);border:1px solid rgba(255,150,180,.1);
+  border-radius:18px;padding:1.4rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+}
+.note-card:hover{transform:translateY(-6px) scale(1.03);border-color:rgba(255,100,150,.4);box-shadow:0 14px 36px rgba(200,50,100,.2)}
+.note-icon{font-size:2.2rem;animation:bob 2.5s ease-in-out infinite}
+.note-title{font-family:'Dancing Script',cursive;font-size:1.05rem;color:#ffd6ea;font-weight:700}
+.note-sub{font-size:.72rem;color:rgba(255,180,200,.4)}
+
+/* tab system */
+.tab-bar2{display:flex;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap}
+.tab-btn2{
+  padding:.45rem 1.1rem;border-radius:50px;
+  border:1.5px solid rgba(255,150,180,.2);
+  background:transparent;color:rgba(255,200,220,.5);
+  font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;
+  transition:all .3s ease;
+}
+.tab-btn2.active{background:rgba(255,100,150,.18);border-color:#ff6b9d;color:#ffd6ea}
+.tab-btn2.locked{opacity:.4;cursor:not-allowed}
+.tab-note2{font-size:.85rem;color:rgba(255,200,220,.45);margin-bottom:1.2rem;font-style:italic}
+.prog2{margin-bottom:1.2rem}
+.prog-lbl2{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,200,220,.4);margin-bottom:.4rem}
+.pbar2{height:2px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.pfill2{height:100%;background:linear-gradient(90deg,#ff6b9d,#ff9a3c);border-radius:2px;transition:width .7s cubic-bezier(.23,1,.32,1);width:0%}
+.lpanel{display:none!important}.lpanel.active{display:block!important;width:100%}
+.locked-ov{text-align:center;padding:2.5rem;font-size:.95rem;color:rgba(255,200,220,.35);font-style:italic}
+
+/* teddy grid */
+.teddy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;width:100%}
+.teddy-card2{
+  cursor:pointer;
+  background:rgba(255,150,180,.07);border:1.5px solid rgba(255,150,180,.1);
+  border-radius:20px;padding:1.3rem .9rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:.4rem;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+}
+.teddy-card2:hover{transform:translateY(-7px) scale(1.04);border-color:rgba(255,100,150,.4);box-shadow:0 14px 36px rgba(200,50,100,.2)}
+.teddy-card2.read{border-color:rgba(255,180,100,.4)}
+.tedi{font-size:2.8rem;animation:teddyBob 2.5s ease-in-out infinite;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.25))}
+.teddy-card2:nth-child(2) .tedi{animation-delay:.35s}
+.teddy-card2:nth-child(3) .tedi{animation-delay:.7s}
+.teddy-card2:nth-child(4) .tedi{animation-delay:1.05s}
+.teddy-t{font-family:'Dancing Script',cursive;font-size:1rem;color:#ffd6ea;font-weight:700}
+.teddy-h{font-size:.67rem;color:rgba(255,180,200,.38);letter-spacing:.1em;text-transform:uppercase}
+.teddy-h.done{color:#ff9a9e}
+.unlock-bnr{
+  display:none;text-align:center;padding:1.2rem;margin-top:1rem;
+  border-radius:14px;border:1px solid rgba(255,180,100,.2);
+  background:rgba(255,150,100,.06);font-size:.92rem;color:#ffd6b0;
+}
+.unlock-bnr strong{display:block;font-size:1.05rem;color:#ff9a9e;margin-bottom:.2rem}
+
+/* reasons */
+.rlist{display:flex;flex-direction:column}
+.ri{
+  display:flex;gap:1.4rem;align-items:flex-start;
+  padding:1.6rem 0;border-bottom:1px solid rgba(255,150,180,.05);
+  opacity:0;transform:translateX(-22px);transition:opacity .7s ease,transform .7s ease;
+}
+.ri.vis{opacity:1;transform:translateX(0)}
+.ri-n{font-family:'Pacifico',cursive;font-size:2.6rem;color:rgba(255,100,150,.17);line-height:1;flex-shrink:0;min-width:48px;transition:color .4s ease}
+.ri:hover .ri-n{color:rgba(255,100,150,.5)}
+.ri-t{display:block;font-family:'Dancing Script',cursive;font-size:1.2rem;color:#ffd6ea;font-weight:700;margin-bottom:.4rem}
+.ri-p{font-size:.93rem;line-height:1.8;color:rgba(255,210,225,.6)}
+
+/* surprise */
+.sv-sec{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;
+  background:radial-gradient(ellipse at center,#1f0018 0%,#0a0008 100%);
+}
+#svc{position:absolute;inset:0;pointer-events:none}
+.sv-inner{position:relative;z-index:5;text-align:center;padding:3rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.6rem}
+.sv-bloom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(200,50,100,.09) 0%,transparent 70%);animation:breathe 5s ease-in-out infinite;pointer-events:none}
+.sv-line{font-family:'Dancing Script',cursive;opacity:0;transform:translateY(16px)}
+.sv-line.ur{font-size:clamp(1.2rem,4vw,1.9rem);color:#ff9a9e}
+.sv-line.hi{font-size:clamp(1rem,3vw,1.5rem);color:#ffc8a0}
+.sv-line.en{font-size:clamp(.9rem,2.5vw,1.2rem);color:#c8a0ff}
+.sv-line.wi{margin-top:1.2rem;font-size:clamp(.88rem,2.5vw,1.05rem);line-height:2.1;color:rgba(255,200,225,.55);font-family:'Nunito',sans-serif}
+
+/* final */
+.final-sec{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+#fc{position:absolute;inset:0;pointer-events:none}
+.f-inner{position:relative;z-index:5;text-align:center;padding:3rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.3rem}
+.f-pre{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#ff9a9e;opacity:.7}
+.f-title{font-family:'Pacifico',cursive;font-size:clamp(2rem,10vw,5rem);color:#fff;line-height:1.15}
+.f-name{display:block;background:linear-gradient(135deg,#ff9a3c,#ff6b9d,#c44dff,#ff9a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:300%;animation:shimmer 3s linear infinite}
+.f-msgs{display:flex;flex-direction:column;gap:.5rem;margin:.8rem 0}
+.fm{font-family:'Dancing Script',cursive;font-size:clamp(.95rem,2.5vw,1.2rem);opacity:0;line-height:1.7}
+.fm.ur{color:#ff9a9e}.fm.hi{color:#ffc8a0}.fm.en{color:#c8a0ff}
+.f-sign{font-family:'Dancing Script',cursive;color:rgba(255,200,220,.45);font-size:1rem}
+.f-ring{position:absolute;width:420px;height:420px;border-radius:50%;border:1px solid rgba(255,100,150,.06);box-shadow:0 0 80px rgba(200,50,100,.06);animation:breathe 6s ease-in-out infinite;pointer-events:none;z-index:-1}
+
+/* ═══ MODAL ═══ */
+.modal-ov{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,0,8,.92);backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;padding:1.5rem;
+  opacity:0;transition:opacity .4s ease;
+}
+.modal-ov.vis{opacity:1}
+.modal-ov.hidden{display:none !important}
+.modal-box{
+  max-width:500px;width:100%;
+  background:rgba(35,5,22,.96);
+  border:1px solid rgba(255,150,180,.14);border-radius:22px;padding:1.8rem;
+  position:relative;
+  transform:translateY(26px) scale(.96);
+  transition:transform .5s cubic-bezier(.23,1,.32,1);
+  backdrop-filter:blur(20px);
+  max-height:85vh;overflow-y:auto;
+}
+.modal-ov.vis .modal-box{transform:translateY(0) scale(1)}
+.mcls{position:absolute;top:.9rem;right:.9rem;background:none;border:none;color:rgba(255,200,220,.4);font-size:1.1rem;cursor:pointer;transition:color .3s ease}
+.mcls:hover{color:#ff9a9e}
+.m-emo{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.m-title{font-family:'Pacifico',cursive;font-size:1.3rem;color:#ffd6ea;margin-bottom:1rem}
+.m-wish{display:block;font-family:'Nunito',sans-serif;font-size:1.02rem;line-height:1.85;color:rgba(255,220,232,.85)}
+
+/* REVEALS */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
+.rv.vis{opacity:1 !important;transform:translateY(0) !important}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes flicker{0%{transform:scaleY(1) scaleX(1) rotate(-1deg)}100%{transform:scaleY(.88) scaleX(.93) rotate(2deg)}}
+@keyframes gentlePulse{0%,100%{opacity:.18}50%{opacity:.35}}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 20px rgba(255,255,255,.15)}}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes cakeBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes teddyBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hintBounce{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(6px)}}
+@keyframes bulbFlicker{0%{opacity:.85}100%{opacity:1}}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+@keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);opacity:0}10%{opacity:.1}90%{opacity:.07}100%{transform:translateY(-10vh) rotate(720deg);opacity:0}}
+
+@media(max-width:600px){
+  .gcards{grid-template-columns:1fr}
+  .teddy-grid{grid-template-columns:repeat(2,1fr)}
+  .notes-grid{grid-template-columns:repeat(2,1fr)}
+  .f-ring{width:260px;height:260px}
+  .sv-bloom{width:220px;height:220px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SCREEN 1: DARK ROOM
+══════════════════════════════════ -->
+<div id="sc-dark" class="screen">
+  <canvas id="starsBg"></canvas>
+  <div class="dark-content">
+    <p class="dark-title">🌙 kuch khaas hone wala hai…</p>
+    <div class="candles-row" id="candlesRow">
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+      <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+    </div>
+    <button class="lights-btn" id="lightsBtn">Turn on the lights 💡</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 2: LIGHTS ON
+══════════════════════════════════ -->
+<div id="sc-lights" class="screen hidden gone" style="background:linear-gradient(180deg,#fff0f5 0%,#ffd6e8 100%)">
+  <!-- fairy lights bar -->
+  <div class="fairy-lights" id="fairyLights"></div>
+  <!-- confetti -->
+  <div class="confetti-layer" id="confettiLayer"></div>
+  <!-- happy birthday instrumental (external, replaces JS-generated tune) -->
+  <audio id="happyBdaySound" preload="auto"><source src="Mood.mp3" type="audio/mpeg"/></audio>
+
+  <!-- cat stickers corners -->
+  <img src="https://media.tenor.com/ECATiSXWwm8AAAAj/dancing-cat-cat.gif" class="cat-sticker cs1" alt="cat"/>
+  <img src="https://media.tenor.com/ECATiSXWwm8AAAAj/dancing-cat-cat.gif" class="cat-sticker cs2" alt="cat"/>
+  <img src="https://media.tenor.com/ECATiSXWwm8AAAAj/dancing-cat-cat.gif" class="cat-sticker cs3" alt="cat"/>
+  <img src="https://media.tenor.com/ECATiSXWwm8AAAAj/dancing-cat-cat.gif" class="cat-sticker cs4" alt="cat"/>
+
+  <!-- main content — centered -->
+  <div class="lights-content">
+    <h1 class="lights-heading">Happy Birthday!</h1>
+    <p class="lights-sub">🎉 Sumerah, 🎉</p>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;font-size:2rem">
+      <span style="animation:wobble .7s ease-in-out infinite alternate">😺</span>
+      <span style="animation:wobble .7s ease-in-out infinite alternate;animation-delay:.2s">🎉</span>
+      <span style="animation:wobble .7s ease-in-out infinite alternate;animation-delay:.4s">😸</span>
+      <span style="animation:wobble .7s ease-in-out infinite alternate;animation-delay:.6s">🎊</span>
+      <span style="animation:wobble .7s ease-in-out infinite alternate;animation-delay:.8s">😹</span>
+    </div>
+    <button class="mood-btn" id="moodBtn">Set the mood 🎶</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 3: CAKE
+══════════════════════════════════ -->
+<div id="sc-cake" class="screen hidden gone">
+  <div class="cake-screen-inner">
+    <h2 class="cake-title">🎂 Cake Time!</h2>
+    <p class="cake-sub">Cut the cake swipe➡️! 🔪</p>
+
+    <!-- DRAG TO CUT -->
+    <div class="cake-box" id="cakeBox">
+      <h3>Drag the knife to cut the cake</h3>
+      <p>Knife ko left se right ki taraf kheencho ✨</p>
+      <div class="cake-container" id="cakeContainer">
+        <div class="cake-candles-top">
+          <div style="display:flex;flex-direction:column;align-items:center"><div class="ck-flame" id="cf1"></div><div class="ck-body"></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div class="ck-flame" id="cf2"></div><div class="ck-body"></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div class="ck-flame" id="cf3"></div><div class="ck-body"></div></div>
+        </div>
+        <span class="cake-emoji-big" id="cakeEmoji">🎂</span>
+        <!-- KNIFE SVG -->
+        <div class="knife-wrap" id="knifeWrap">
+          <svg class="knife-svg" id="knifeSvg" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- handle -->
+            <rect x="28" y="120" width="24" height="70" rx="8" fill="#8B4513"/>
+            <rect x="32" y="125" width="4" height="60" rx="2" fill="#A0522D" opacity="0.5"/>
+            <!-- guard -->
+            <rect x="18" y="112" width="44" height="12" rx="4" fill="#888"/>
+            <!-- blade -->
+            <path d="M40 10 L52 112 L28 112 Z" fill="url(#bladeGrad)"/>
+            <!-- shine on blade -->
+            <path d="M40 15 L44 100 L41 100 Z" fill="white" opacity="0.35"/>
+            <defs>
+              <linearGradient id="bladeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e0e0e0"/>
+                <stop offset="50%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#bdbdbd"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- cut line canvas -->
+        <canvas id="cutCanvas" style="position:absolute;inset:0;pointer-events:none;border-radius:12px"></canvas>
+        <div class="knife-area" id="knifeArea">
+          <div class="drag-hint" id="dragHint">← Drag knife here</div>
+        </div>
+      </div>
+      <div class="cut-done-msg" id="cutMsg">🎉 Zabardast! Cake cut ho gaya!</div>
+    </div>
+
+    <!-- MAKE A WISH -->
+    <div class="wish-card" id="wishCard">
+      <span style="font-size:3.5rem;display:block;margin-bottom:.6rem">🥳</span>
+      <h2>Make A Wish</h2>
+      <p>Aankhein band karo aur ek wish maango</p>
+      <p class="small">Then click ⬇️.</p>
+      <button class="wish-btn" id="wishBtn">I Made My Wish ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 4: INTRO — READY TO OPEN?
+══════════════════════════════════ -->
+<div id="sc-intro" class="screen hidden gone">
+  <div class="intro-card">
+    <div class="card-topbar">
+      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <span class="card-filename">birthday-star.intro</span>
+      <div class="dots"><span class="dot" style="background:#ffb3c6"></span><span class="dot" style="background:#ffcc80"></span><span class="dot" style="background:#a5d6a7"></span></div>
+    </div>
+    <div class="intro-body">
+      <span class="intro-icon">🎂</span>
+      <span class="intro-tag">A little note for you</span>
+      <h2 class="intro-q">Ready to open it?</h2>
+
+      <!-- CRYING CAT appears when No is attempted -->
+      <div class="crying-cat-wrap" id="cryingCatWrap" style="display:none">
+        <img src="https://media.tenor.com/UNaQFutfOF0AAAAj/banana-crying-cat.gif"
+             alt="Crying Cat"
+             class="crying-cat-gif"
+             onerror="this.outerHTML='<span style=\'font-size:3rem\'>😿</span>'"/>
+        <p class="crying-msg" id="cryingMsg">Nahi!? 😭</p>
+      </div>
+
+      <div class="btn-row" style="position:relative;min-height:72px;width:100%;justify-content:center;overflow:visible;">
+        <button class="yes-btn" id="yesBtn">Yes! 🎉</button>
+        <button class="no-btn" id="noBtn" style="position:absolute">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 5: FLIP WISHES
+══════════════════════════════════ -->
+<div id="sc-flip" class="screen hidden gone">
+  <div class="flip-inner">
+    <h2 class="flip-title">Flip these birthday wishes 🌸</h2>
+    <p class="flip-sub">Each card hides a little message — tap to reveal!</p>
+    <div class="flip-cards" id="flipCards">
+
+      <div class="flip-card" data-idx="0">
+        <div class="flip-card-front">
+          <div class="flip-card-img">
+            <div class="bg-pattern"></div>
+            <span style="font-size:4rem;z-index:1">🧸</span>
+          </div>
+          <div class="wish-tag">Wish</div>
+          <div class="flip-hint">Tap to flip 🌸</div>
+        </div>
+        <div class="flip-card-back">
+          <span class="flip-back-lang ur">🌙💖</span>
+          <p class="flip-back-text">  Happy Birthday to someone who deserves every beautiful thing this world has to offer On this special day.</p>
+        </div>
+      </div>
+
+      <div class="flip-card" data-idx="1">
+        <div class="flip-card-front">
+          <div class="flip-card-img">
+            <div class="bg-pattern"></div>
+            <span style="font-size:4rem;z-index:1">🎀</span>
+          </div>
+          <div class="wish-tag">Wish</div>
+          <div class="flip-hint">Tap to flip 🌸</div>
+        </div>
+        <div class="flip-card-back">
+          <span class="flip-back-lang ur">🌙💖</span>
+          <p class="flip-back-text">  I wish for you a life where opportunities find you at the right time, where your efforts are rewarded, and where your kindness returns to you. </p>
+        </div>
+      </div>
+
+      <div class="flip-card" data-idx="2">
+        <div class="flip-card-front">
+          <div class="flip-card-img">
+            <div class="bg-pattern"></div>
+            <span style="font-size:4rem;z-index:1">🌙</span>
+          </div>
+          <div class="wish-tag">Wish</div>
+          <div class="flip-hint">Tap to flip 🌸</div>
+        </div>
+        <div class="flip-card-back">
+          <span class="flip-back-lang ur">🌙💖</span>
+          <p class="flip-back-text">  I sincerely wish that your life is filled with endless happiness, genuine peace, good health, success, and countless reasons to smile.</p>
+        </div>
+      </div>
+
+      <div class="flip-card" data-idx="3">
+        <div class="flip-card-front">
+          <div class="flip-card-img">
+            <div class="bg-pattern"></div>
+            <span style="font-size:4rem;z-index:1">🎂</span>
+          </div>
+          <div class="wish-tag">Wish</div>
+          <div class="flip-hint">Tap to flip 🌸</div>
+        </div>
+        <div class="flip-card-back">
+          <span class="flip-back-lang ur">🌙💖</span>
+          <p class="flip-back-text"> May your heart always remain light, your mind remain calm, and your soul remain surrounded by positivity. 🌙</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;padding:1.5rem 0">
+      <p style="font-size:.8rem;color:#bbb;margin-bottom:1rem">Start flipping the wishes 🎀</p>
+      <button class="mood-btn" id="toMainBtn" style="display:none;margin:0 auto">Click here 🕵️! ✨</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 6: MAIN SITE
+══════════════════════════════════ -->
+<div id="sc-main" class="screen">
+  <div id="bg-float"></div>
+  <audio id="bgm" loop><source src="Song.mp3" type="audio/mpeg"/></audio>
+  <button id="mBtn">♪</button>
+
+  <!-- WELCOME -->
+  <div class="msec" style="background:linear-gradient(160deg,#1f0520 0%,#2d0a1a 100%)">
+    <div class="container">
+      <span class="sec-tag">🎀 Dear Sumerah</span>
+      <h2 class="sec-title rv">Happy birthday ,<br/>again 😄</h2>
+      <div class="gcards">
+        <div class="gcard rv">
+          <p class="gcard-lang"> 😻😻 </p>
+          
+          <p></p> On your birthday, I wish for a life filled with endless opportunities, meaningful experiences, and beautiful moments that stay in your heart forever. May every step you take bring you closer to your goals, every challenge help you discover your strength, and every success remind you of how capable you truly are. You deserve a future filled with happiness, growth, and all the wonderful things that make life worth celebrating.🙂  </p>
+        </div>
+        <div class="gcard rv">
+          <p class="gcard-lang">🌸🫶</p>
+          <p>I hope this year brings you more than just success. May it bring peace to your heart, confidence to your mind, and happiness to your soul. May you find beauty in ordinary days, strength during difficult moments, and comfort in knowing that brighter days are always aheaᴅ You deserve every blessing that life has to offer.</p>
+        </div>
+        <div class="gcard rv">
+          <p class="gcard-lang">✨ 🙇    </p>
+          <p>As you celebrate another year of your life, I hope you look back with gratitude and look ahead with excitement. May the coming years bring achievements that make you proud, friendships that make you feel valued, and moments that remind you how beautiful life can be. May happiness always find its way back to you, no matter where life takes you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB SECTION -->
+  <div class="msec" style="background:linear-gradient(160deg,#160010 0%,#250818 100%)">
+    <div class="container">
+      <span class="sec-tag">🧸 A Few Sweet Words💝</span>
+      <h2 class="sec-title rv">Open cards 🧸</h2>
+      <div class="tab-bar2">
+        <button class="tab-btn2 active" data-tab="ru">🌙Card 1</button>
+        <button class="tab-btn2 locked" data-tab="rh" id="tab-rh2">🌸Card 2 🔒</button>
+        <button class="tab-btn2 locked" data-tab="en" id="tab-en2">✨Card 3     </button>
+      </div>
+      <p class="tab-note2" id="tabNote2">🧸 Charon cards padho — agla card khulega</p>
+      <div class="prog2">
+        <p class="prog-lbl2" id="progLbl2">0 of 4 read</p>
+        <div class="pbar2"><div class="pfill2" id="progFill2"></div></div>
+      </div>
+
+      <!-- CARD 1 PANEL -->
+      <div class="lpanel active" id="lp-ru">
+        <div class="teddy-grid">
+          <div class="teddy-card2" data-tab="ru" data-id="ru1"
+            data-emo="🧸" data-title=""
+            data-sub="😄"
+            data-ur="Sumerah teri hasi itni pyaari hai ke aas paas sabka mood khud hi achha ho jaata hai. Kabhi kabhi sochta hoon — itni khoobsurat hasi kahan se laati ho. Yeh hasi hamesha aise hi banaye rakhna."
+            data-rh="Tera muskurana itna sukoon deta hai ke baat hi kya. Jis din tu khush hoti hai, woh din achha ho jaata hai. Bas yehi dua hai — teri hasi kabhi kam na ho."
+            data-en="Sumerah, your smile genuinely makes everything around it feel lighter and happier. It's such a small thing that means so much. Never lose it.">
+            <span class="tedi">🧸</span><span class="teddy-t">Your Smile 😄</span><span class="teddy-h">tap to open ✦</span>
+          </div>
+          <div class="teddy-card2" data-tab="ru" data-id="ru2"
+            data-emo="🐻" data-title="Your Vibe"
+            data-sub="Khaas baat 💫"
+            data-ur="Sumerah tera andaaz baat karne ka itna apna sa hai ke baat seedha dil tak pohonch jaati hai. Yeh khaasiyat sabke paas nahi hoti — tujhe is baat ka pata bhi nahi hota."
+            data-rh="Tera tareeka itna simple aur sachcha hai ke log khud-ba-khud comfortable feel karte hain. Yeh ek rare quality hai — bahut kam logon mein hoti hai."
+            data-en="Sumerah, the way you talk to people just puts them at ease. It's such a genuine quality and honestly not everyone has it.">
+            <span class="tedi">🐻</span><span class="teddy-t">Your Vibe 💫</span><span class="teddy-h">tap to open ✦</span>
+          </div>
+          <div class="teddy-card2" data-tab="ru" data-id="ru3"
+            data-emo="🧸" data-title="Your Outlook"
+            data-sub="Pyaari si baat 🌙"
+            data-ur="Sumerah teri ek khaasiyat hai — tu chhoti chhoti baaton mein bhi khushi dhoond leti hai. Yeh hunar bahut kam logon ke paas hota hai. Aise hi rehna hamesha."
+            data-rh="Tu chahe kaisa bhi din ho, apni positivity nahi chhodti. Yehi cheez tujhe sabse alag banaati hai. Sach mein inspiring hai."
+            data-en="Sumerah, you have this way of finding joy in the small things, no matter what kind of day it is. That's a rare and beautiful quality.">
+            <span class="tedi">🧸</span><span class="teddy-t">Your Outlook 👀</span><span class="teddy-h">tap to open ✦</span>
+          </div>
+          <div class="teddy-card2" data-tab="ru" data-id="ru4"
+            data-emo="🎀" data-title="Birthday Wish 🎂"
+            data-sub="Dil se, seedha"
+            data-ur="Sumerah aaj ke din ke liye dil se dua hai — teri zindagi mein hamesha khushiyan rahein, har din pehle se behtar ho. Tu jo bhi chaahe woh sab mile. Happy Birthday yaar! 🌙"
+            data-rh="Teri birthday pe koi badi baat nahi — sirf yeh: tu jahan bhi ho jaise bhi ho, hamesha khush reh. Teri muskurahat is duniya ke liye bohot zaroori hai. Sachchi mein. Happy Birthday Sumerah."
+            data-en="Happy Birthday Sumerah. No big speech — just this: I hope today feels as warm and happy as you make everything around you feel. You deserve every good thing.">
+            <span class="tedi">🎀</span><span class="teddy-t">Birthday Wish 🎂</span><span class="teddy-h">tap to open ✦</span>
+          </div>
+        </div>
+        <div class="unlock-bnr" id="unl-ru"><strong>🌸 Card 2 unlock ho gaya!</strong>Charon cards padhe — ab agla card</div>
+      </div>
+
+      <!-- CARD 2 PANEL -->
+      <div class="lpanel hidden" id="lp-rh">
+        <div class="locked-ov" id="lock-rh2"><span style="font-size:2rem;display:block;margin-bottom:.6rem;opacity:.35">🔒</span>Pehle Card 1 ke charon parts padho</div>
+        <div id="rh-grid" class="hidden">
+          <div class="teddy-grid">
+            <div class="teddy-card2" data-tab="rh" data-id="rh1"
+              data-emo="🧸" data-title="Your Strength"
+              data-sub="Khaas baat 😎"
+              data-ur="Sumerah tu mushkil waqt mein bhi calm aur sambhli hui lagti hai. Yeh badi baat hai. Sabke paas yeh sukoon nahi hota."
+              data-rh="Tu woh dost hai jisse baat karke hi sab kuch better lagne lagta hai. Yeh ek rare quality hai — bahut kam logon mein hoti hai."
+              data-en="Sumerah, you have this ability to make everything feel manageable just by being calm. That's a quiet kind of strength, and it doesn't go unnoticed.">
+              <span class="tedi">🧸</span><span class="teddy-t">Your Strength 😎</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="rh" data-id="rh2"
+              data-emo="🐨" data-title="Good Memories"
+              data-sub="Hamesha yaad rahengi 😊"
+              data-ur="Tere saath guzra har achha pal yaad rehta hai. Tu jis tarah baaton ko khaas bana deti hai, woh kam logon mein hota hai."
+              data-rh="Tere saath jo bhi pal guzre, sab khaas the. Tu logon ko khush karna jaanti hai, bina kisi koshish ke."
+              data-en="Sumerah, the good moments shared with you always stay. You have a way of making things memorable without even trying.">
+              <span class="tedi">🐨</span><span class="teddy-t">Good Memories 😊</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="rh" data-id="rh3"
+              data-emo="🧸" data-title="Your Patience"
+              data-sub="Sach bol raha hoon"
+              data-ur="Tu mushkil pal mein bhi sambhal leti hai aur jaldi normal ho jaati hai. Yeh sabr aur maturity bahut achi baat hai."
+              data-rh="Tu kabhi kisi baat ko zyada der tak dil pe nahi rakhti. Yeh ek bahut achi aadat hai — sabke paas nahi hoti."
+              data-en="Sumerah, you handle hard moments with patience and bounce back quickly. That's genuinely admirable.">
+              <span class="tedi">🧸</span><span class="teddy-t">Your Patience 💛</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="rh" data-id="rh4"
+              data-emo="🎀" data-title="From The Heart 🌙"
+              data-sub="Ekdum sachchi"
+              data-ur="Sumerah teri birthday pe sirf yeh dua hai — har woh cheez jo tu deserve karti hai, mil jaaye. Tu bohot deserve karti hai khushiyan."
+              data-rh="Yeh birthday sirf ek din nahi — yeh teri poori zindagi ka celebration hai. Happy Birthday. Dil se."
+              data-en="Happy Birthday Sumerah — I hope this year brings you so much warmth, laughter, and good things. You truly deserve all of it.">
+              <span class="tedi">🎀</span><span class="teddy-t">From The Heart 🌙</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+          </div>
+          <div class="unlock-bnr" id="unl-rh"><strong>✨ Card 3 unlock ho gaya!</strong>Last card — sabse acha</div>
+        </div>
+      </div>
+
+      <!-- CARD 3 PANEL -->
+      <div class="lpanel hidden" id="lp-en">
+        <div class="locked-ov" id="lock-en2"><span style="font-size:2rem;display:block;margin-bottom:.6rem;opacity:.35">🔒</span>Finish Card 2 first — then this unlocks</div>
+        <div id="en-grid" class="hidden">
+          <div class="teddy-grid">
+            <div class="teddy-card2" data-tab="en" data-id="en1"
+              data-emo="🧸" data-title="A Bright Spirit"
+              data-sub="Real talk, no filter ✨"
+              data-ur="Sumerah jahan bhi hoti hai woh jagah behtar lagti hai. Yeh baat lafzon mein samjhana mushkil hai."
+              data-rh="Sumerah ke aane se mehfil mein ek alag si khushi aa jaati hai. Kuch logon ke saath aisa hi hota hai."
+              data-en="There is a thing that happens when Sumerah is around — the room feels warmer, people smile more easily, and conversations get better. That's just you, being you.">
+              <span class="tedi">🧸</span><span class="teddy-t">A Bright Spirit ✨</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="en" data-id="en2"
+              data-emo="🏆" data-title="Genuinely Special 📊"
+              data-sub="No exaggeration here"
+              data-ur="Sumerah ek genuinely achi insaan hai — pyaar karne wali, kadar karne wali aur sabka khayal rakhne wali. Aisi log kam hote hain."
+              data-rh="Sumerah jaisa dil rakhna sabke bas ki baat nahi. Tu sach mein khaas hai — har tarah se."
+              data-en="Sumerah is genuinely one of the good ones — kind, warm, and someone people feel lucky to know. That's not an exaggeration, just the truth.">
+              <span class="tedi">🏆</span><span class="teddy-t">Genuinely Special 📊</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="en" data-id="en3"
+              data-emo="🌙" data-title="Just Sumerah 💫"
+              data-sub="A name worth celebrating"
+              data-ur="Sumerah — yeh naam hi apne aap mein khaas hai. Sunke dil ko sukoon milta hai."
+              data-rh="Sumerah — ek naam, ek pyaari si pehchaan. Sabke dilon mein khaas jagah."
+              data-en="Sumerah is a name that carries warmth with it. Simple as that — and it suits you perfectly.">
+              <span class="tedi">🌙</span><span class="teddy-t">Just Sumerah 💫</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+            <div class="teddy-card2" data-tab="en" data-id="en4"
+              data-emo="🎂" data-title="Happy Birthday 🎂"
+              data-sub="From the heart"
+              data-ur="Sumerah — sachchi baat yeh hai ke teri wajah se bahut si cheezein behtar hain. Teri zindagi mein hamesha roshni rahe."
+              data-rh="Sumerah — teri khushi sabse pehle aati hai. Always. Happy Birthday."
+              data-en="Sumerah — no big speech, just this: you are one of the genuinely good ones, and I hope your birthday feels as warm and happy as you make everything else feel.">
+              <span class="tedi">🎂</span><span class="teddy-t">Happy Birthday 🎂</span><span class="teddy-h">tap to open ✦</span>
+            </div>
+          </div>
+          <div class="unlock-bnr" id="unl-en"><strong>🌙 Teeno cards complete!</strong>Scroll karo — aur bhi kuch hai ✨</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES SECTION -->
+  <div class="msec" style="background:linear-gradient(160deg,#200515 0%,#180010 100%)">
+    <div class="container">
+      <span class="sec-tag">🤫 A Few Sweet Things</span>
+      <h2 class="sec-title rv">Little Things<br/>Worth Saying 🌸</h2>
+      <div class="notes-grid">
+        <div class="note-card" data-emo="🌸" data-title="Your Presence"
+          data-ur="Jis jagah tu hoti hai, woh jagah behtar lagti hai. Yeh ek khaas baat hai jo sirf kuch logon mein hoti hai."
+          data-rh="Teri maujoodi mein ek aisi khoobi hai jo alfaaz mein nahi aati. Sirf mehsoos hoti hai."
+          data-en="There are people whose presence just makes everything feel warmer. You're one of those people.">
+          <span class="note-icon">🌸</span><span class="note-title">Your Presence</span><span class="note-sub">a quiet kind of magic</span>
+        </div>
+        <div class="note-card" data-emo="✨" data-title="Your Outlook"
+          data-ur="Tera nazariya cheezon ko dekhne ka bohot pyaara hai. Yeh sabke paas nahi hota."
+          data-rh="Jis tarah tu cheezon ko samajhti hai, woh kaafi rare hai — bahut kam logon mein hota hai."
+          data-en="The way you see things is genuinely thoughtful. Not everyone has that.">
+          <span class="note-icon">✨</span><span class="note-title">Your Outlook</span><span class="note-sub">special and rare</span>
+        </div>
+        <div class="note-card" data-emo="😄" data-title="That Unforgettable Laugh"
+          data-ur="Teri hasi sunke din achha ho jaata hai. Ek baar suna toh hamesha yaad rehta hai."
+          data-rh="Teri hasi mein ek khaas khushi hai jo bhulti nahi. Yeh teri sabse achi baat hai."
+          data-en="Your laugh has a way of making any day better. It's the kind that stays with people.">
+          <span class="note-icon">😄</span><span class="note-title">That Unforgettable Laugh</span><span class="note-sub">the kind that stays</span>
+        </div>
+        <div class="note-card" data-emo="💫" data-title="Your Name"
+          data-ur="Sumerah — yeh naam sunke hi ek sukoon sa milta hai. Bohot pyaara naam hai."
+          data-rh="Sumerah ek aisa naam hai jo dil se nikalta hai. Aise kam names hote hain."
+          data-en="Sumerah is a name that sounds like it was chosen carefully. And it suits you perfectly.">
+          <span class="note-icon">💫</span><span class="note-title">Your Name</span><span class="note-sub">Sumerah ✦</span>
+        </div>
+        <div class="note-card" data-emo="🌙" data-title="Just Your Happiness"
+          data-ur="Teri khushi ki dua karna duniya ka sabse asaan kaam hai — bina sochi samajhi, natural hai yeh."
+          data-rh="Teri tarakki, teri khushi, tera chain — yeh sab dua mein apne aap aa jaate hain."
+          data-en="Wishing good things for you just comes naturally. No reason needed.">
+          <span class="note-icon">🌙</span><span class="note-title">Just Your Happiness</span><span class="note-sub">no conditions attached</span>
+        </div>
+        <div class="note-card" data-emo="🤗" data-title="Your Warmth"
+          data-ur="Tu logon ko bohot jaldi apna bana leti hai. Yeh ek khaas gift hai sabke paas nahi hota."
+          data-rh="Tujhse baat karke hi log comfortable feel karte hain. Yeh khaasiyat sabke paas nahi hoti."
+          data-en="You have this warmth that makes people feel comfortable around you. That's a genuine gift.">
+          <span class="note-icon">🤗</span><span class="note-title">Your Warmth</span><span class="note-sub">it puts everyone at ease</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY SPECIAL -->
+  <div class="msec" style="background:linear-gradient(160deg,#1a0015 0%,#0e000b 100%)">
+    <div class="container">
+      <span class="sec-tag">💫 Why You're Special</span>
+      <h2 class="sec-title rv">6 Reasons<br/>Sumerah 🎀</h2>
+      <div class="rlist">
+        <div class="ri"><span class="ri-n">01</span><div><span class="ri-t">😄 Your Laugh — The Best Kind</span><p class="ri-p">Your laugh makes the day lighter for everyone around. No effort needed. Maximum happiness.</p></div></div>
+        <div class="ri"><span class="ri-n">02</span><div><span class="ri-t">🧠 Your Mind — On Another Level</span><p class="ri-p">The way your mind works is genuinely thoughtful and different. Always brings a fresh perspective.</p></div></div>
+        <div class="ri"><span class="ri-n">03</span><div><span class="ri-t">💪 Your Heart — Quietly Strong</span><p class="ri-p">You carry a lot without showing it. That takes real strength most people don't have.</p></div></div>
+        <div class="ri"><span class="ri-n">04</span><div><span class="ri-t">☕ Your Presence — Instant Comfort</span><p class="ri-p">Being around you feels comfortable and warm — no explanations needed.</p></div></div>
+        <div class="ri"><span class="ri-n">05</span><div><span class="ri-t">🌙 Your Style — Completely Your Own</span><p class="ri-p">You have a style in how you talk, think, and carry yourself — entirely your own. Nobody does it quite like you.</p></div></div>
+        <div class="ri"><span class="ri-n">06</span><div><span class="ri-t">✨ Sumerah — Genuinely Special</span><p class="ri-p">The world is genuinely better with you in it. Not just words — just the truth.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURPRISE -->
+  <div class="sv-sec" style="display:block">
+    <canvas id="svc"></canvas>
+    <div class="sv-inner">
+      <div class="sv-bloom"></div>
+      <span class="sec-tag" style="color:#ff9a9e">🎂 A Special Moment</span>
+      <div style="display:flex;flex-direction:column;gap:.8rem;text-align:center">
+        <p class="sv-line en">Sumerah — today the universe is celebrating you. ✨</p>
+        <p class="sv-line wi">Every bit of happiness that ever slipped away — may it find its way back to you today.<br/>🌙 Happy Birthday Sumerah 🌙<br/>Truly, from the heart, always.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final-sec" style="display:block">
+    <canvas id="fc"></canvas>
+    <div class="f-inner">
+      <p class="f-pre">🌙 A Wish From The Heart 🌙</p>
+      <h2 class="f-title">Happy Birthday<br/><span class="f-name">Sumerah ✦</span></h2>
+      <div class="f-msgs">
+        <p class="fm en">✨ May every good thing you've given others — come back to you tenfold.</p>
+      </div>
+      <p class="f-sign">— wishing you happiness, always. 🌙</p>
+      <div class="f-ring"></div>
+    </div>
+  </div>
+
+</div><!-- /sc-main -->
+
+<!-- NOTE MODAL -->
+<div class="modal-ov hidden" id="noteModal">
+  <div class="modal-box">
+    <button class="mcls" id="nmCls">✕</button>
+    <span class="m-emo" id="nm-emo"></span>
+    <h3 class="m-title" id="nm-title"></h3>
+    <p class="m-wish" id="nm-en"></p>
+  </div>
+</div>
+
+<!-- TEDDY MODAL -->
+<div class="modal-ov hidden" id="teddyModal">
+  <div class="modal-box">
+    <button class="mcls" id="tmCls">✕</button>
+    <span class="m-emo" id="tm-emo"></span>
+    <h3 class="m-title" id="tm-title"></h3>
+    <p class="m-wish" id="tm-en"></p>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   COMPLETE JS
+════════════════════════════════════════ */
+
+/* ── SCREEN 1: DARK + STARS ── */
+(function(){
+  const cv = document.getElementById('starsBg');
+  const cx = cv.getContext('2d');
+  let W, H, stars = [];
+  function resize(){ W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for(let i=0;i<120;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:.3+Math.random()*1.3,a:.2+Math.random()*.6,ph:Math.random()*Math.PI*2,sp:.008+Math.random()*.012});
+  let t=0;
+  (function draw(){
+    cx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      const a=s.a*(0.6+0.4*Math.sin(s.ph+t*s.sp));
+      cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      cx.fillStyle=`rgba(200,180,255,${a})`;cx.fill();
+    });
+    t++;requestAnimationFrame(draw);
+  })();
+})();
+
+/* ── CANDLE BLOW (click screen) ── */
+document.getElementById('sc-dark').addEventListener('click', blowAndLight);
+let blown = false;
+function blowAndLight(){
+  if(blown) return; blown = true;
+  playHappySound();
+  document.querySelectorAll('.candle').forEach((c,i)=>{
+    setTimeout(()=>c.classList.add('blown'), i*100);
+  });
+  setTimeout(goToLights, 1200);
+}
+
+/* ── SCREEN TRANSITION HELPER ── */
+function goTo(fromId, toId){
+  const from = document.getElementById(fromId);
+  const to   = document.getElementById(toId);
+  from.classList.add('hidden');
+  setTimeout(()=>from.classList.add('gone'), 900);
+  to.classList.remove('gone');
+  requestAnimationFrame(()=>{ to.classList.remove('hidden'); });
+}
+
+/* ── LIGHTS ON ── */
+function goToLights(){
+  goTo('sc-dark','sc-lights');
+  buildFairyLights();
+  launchConfetti('confettiLayer');
+  document.getElementById('moodBtn').addEventListener('click',()=>goTo('sc-lights','sc-cake'), {once:true});
+}
+
+function playHappySound(){
+  try{
+    const a = document.getElementById('happyBdaySound');
+    if(!a) return;
+    a.currentTime = 0;
+    a.volume = 0.55;
+    a.play().catch((err)=>{console.warn('happyBdaySound play failed:',err);});
+  }catch(e){console.warn('happyBdaySound error:',e);}
+}
+
+/* FAIRY LIGHTS */
+function buildFairyLights(){
+  const cont = document.getElementById('fairyLights');
+  const colors = ['#ff6b6b','#ffd93d','#ff9a3c','#74b9ff','#a29bfe','#fd79a8','#55efc4','#fdcb6e'];
+  const wire = document.createElement('div');wire.className='wire';cont.appendChild(wire);
+  const n = Math.max(8, Math.floor(window.innerWidth/60));
+  for(let i=0;i<n;i++){
+    const wrap = document.createElement('div');wrap.className='bulb-wrap';
+    const stem = document.createElement('div');stem.className='bulb-stem';
+    const bulb = document.createElement('div');bulb.className='bulb';
+    const cap  = document.createElement('div');cap.className='bulb-cap';
+    const col  = colors[i%colors.length];
+    bulb.style.background=`radial-gradient(circle at 40% 35%,${col}dd,${col})`;
+    bulb.style.color=col;
+    bulb.style.animationDelay=`${i*0.15}s`;
+    wrap.appendChild(stem);wrap.appendChild(bulb);wrap.appendChild(cap);
+    cont.appendChild(wrap);
+  }
+}
+
+
+
+/* CONFETTI */
+function launchConfetti(containerId){
+  const cont = document.getElementById(containerId);
+  const colors=['#ff6b9d','#ff9a3c','#ffdd59','#c44dff','#74b9ff','#7bed9f','#fd79a8'];
+  for(let i=0;i<120;i++){
+    const cf=document.createElement('div');
+    cf.style.cssText=`position:absolute;width:${6+Math.random()*7}px;height:${6+Math.random()*7}px;border-radius:2px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;top:-10px;animation:confFall ${0.9+Math.random()*1.5}s ease ${Math.random()*0.5}s forwards;transform:rotate(${Math.random()*360}deg)`;
+    cont.appendChild(cf);
+    setTimeout(()=>cf.remove(),3000);
+  }
+}
+/* confetti keyframe */
+const cStyle=document.createElement('style');
+cStyle.textContent=`@keyframes confFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}`;
+document.head.appendChild(cStyle);
+
+/* ── SCREEN 3: CAKE KNIFE DRAG ── */
+let cakeDone=false, isDragging=false, dragStartX=0;
+const knifeWrap=document.getElementById('knifeWrap');
+const knifeArea=document.getElementById('knifeArea');
+const cutCv=document.getElementById('cutCanvas');
+const cutCx=cutCv?cutCv.getContext('2d'):null;
+let cutTrail=[];
+
+function getEx(e){return e.touches?e.touches[0].clientX:e.clientX;}
+
+function knifeDown(e){
+  if(cakeDone)return;
+  e.preventDefault();
+  isDragging=true;
+  const rect=document.getElementById('cakeContainer').getBoundingClientRect();
+  dragStartX=getEx(e)-rect.left;
+  if(knifeWrap)knifeWrap.classList.add('cutting');
+  const dh=document.getElementById('dragHint');
+  if(dh)dh.style.display='none';
+}
+function knifeMove(e){
+  if(!isDragging||cakeDone)return;
+  e.preventDefault();
+  const rect=document.getElementById('cakeContainer').getBoundingClientRect();
+  const relX=getEx(e)-rect.left;
+  const clamped=Math.max(0,Math.min(rect.width-44,relX));
+  if(knifeWrap)knifeWrap.style.left=clamped+'px';
+  // draw cut trail
+  if(cutCv&&cutCx){
+    cutCv.width=rect.width;cutCv.height=rect.height;
+    cutTrail.push(relX);
+    cutCx.clearRect(0,0,cutCv.width,cutCv.height);
+    const g=cutCx.createLinearGradient(cutTrail[0]||0,0,relX,0);
+    g.addColorStop(0,'rgba(255,100,150,0)');
+    g.addColorStop(0.3,'rgba(255,180,200,0.5)');
+    g.addColorStop(1,'rgba(255,255,255,0.85)');
+    cutCx.strokeStyle=g;cutCx.lineWidth=3;cutCx.setLineDash([6,4]);
+    cutCx.beginPath();
+    cutCx.moveTo(cutTrail[0]||0,rect.height*0.45);
+    cutCx.lineTo(relX,rect.height*0.45);
+    cutCx.stroke();
+    if(cutTrail.length%4===0){
+      cutCx.fillStyle='rgba(255,220,80,0.9)';
+      cutCx.beginPath();
+      cutCx.arc(relX,rect.height*0.45+(Math.random()-.5)*8,2+Math.random()*3,0,Math.PI*2);
+      cutCx.fill();
+    }
+  }
+  if(dragStartX<rect.width*0.3&&relX>rect.width*0.75)finishCut();
+}
+function knifeUp(){isDragging=false;}
+
+if(knifeWrap){
+  knifeWrap.addEventListener('mousedown',knifeDown);
+  knifeWrap.addEventListener('touchstart',knifeDown,{passive:false});
+}
+if(knifeArea){
+  knifeArea.addEventListener('mousedown',knifeDown);
+  knifeArea.addEventListener('touchstart',knifeDown,{passive:false});
+}
+window.addEventListener('mousemove',knifeMove);
+window.addEventListener('touchmove',knifeMove,{passive:false});
+window.addEventListener('mouseup',knifeUp);
+window.addEventListener('touchend',knifeUp);
+document.getElementById('cakeContainer').addEventListener('click',()=>{if(!cakeDone)finishCut();});
+
+function finishCut(){
+  if(cakeDone)return;cakeDone=true;isDragging=false;
+  if(knifeWrap){knifeWrap.classList.remove('cutting');knifeWrap.classList.add('done');}
+  ['cf1','cf2','cf3'].forEach((id,i)=>setTimeout(()=>{const f=document.getElementById(id);if(f)f.classList.add('out');},i*120));
+  const emo=document.getElementById('cakeEmoji');
+  if(emo)setTimeout(()=>{emo.style.transition='all 0.4s ease';emo.style.filter='drop-shadow(0 0 20px rgba(255,100,150,0.9))';},200);
+  document.getElementById('cutMsg').style.display='block';
+  launchConfetti('cakeCf');
+  setTimeout(()=>{
+    document.getElementById('cakeBox').style.display='none';
+    document.getElementById('wishCard').classList.add('show');
+    document.getElementById('wishCard').querySelector('.wish-btn').classList.add('ready');
+  },1400);
+}
+
+document.getElementById('wishBtn').addEventListener('click',()=>{goTo('sc-cake','sc-intro');});
+
+const cakeCfDiv=document.createElement('div');
+cakeCfDiv.id='cakeCf';
+cakeCfDiv.style.cssText='position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit';
+document.getElementById('sc-cake').appendChild(cakeCfDiv);
+
+/* ── SCREEN 4: YES/NO ── */
+// yesBtn – safe guard
+var yesBtnEl = document.getElementById('yesBtn');
+if(yesBtnEl) yesBtnEl.addEventListener('click',()=>goTo('sc-intro','sc-flip'));
+
+/* TELEPORTING NO BUTTON + CRYING CAT SOUND */
+const noBtnEl = document.getElementById('noBtn');
+let noCount = 0;
+
+function teleportNo(){
+  if(!noBtnEl) return;
+  noCount++;
+  // random position within the btn-row area
+  var directions = [
+    {right:'auto',left:'5px',top:'-30px'},
+    {right:'auto',left:'10px',top:'45px'},
+    {right:'-5px',left:'auto',top:'-25px'},
+    {right:'5px',left:'auto',top:'42px'},
+    {right:'auto',left:'50px',top:'-32px'},
+    {right:'auto',left:'60px',top:'48px'},
+  ];
+  var d = directions[noCount % directions.length];
+  noBtnEl.style.transition='all 0.12s ease';
+  noBtnEl.style.left   = d.left;
+  noBtnEl.style.right  = d.right;
+  noBtnEl.style.top    = d.top;
+  var msgs=['Nahi toh nahi! 😭','Banana cat ro rahi hai! 😿','Please YES karo yaar! 🙏','Dekh kya kiya tune!! 😭','Tu dil toda mera 💔','FINE JA RAHA HOON 😤'];
+  var cm=document.getElementById('cryingMsg');
+  if(cm) cm.textContent=msgs[Math.min(noCount-1,msgs.length-1)];
+  var cw=document.getElementById('cryingCatWrap');
+  if(cw){cw.style.display='block';void cw.offsetWidth;cw.style.animation='popIn 0.4s ease both';}
+  playSadSound();
+  if(noCount>=6) setTimeout(function(){goTo('sc-intro','sc-flip');},700);
+}
+
+function playSadSound(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    // Sad wah-wah-wah tune
+    const notes=[392,370,349,330,311,293];
+    const times=[0,.18,.36,.55,.75,.95];
+    notes.forEach((freq,i)=>{
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.type='sawtooth';
+      osc.frequency.value=freq;
+      // vibrato
+      const lfo=ctx.createOscillator();
+      const lfoGain=ctx.createGain();
+      lfo.frequency.value=5;lfoGain.gain.value=8;
+      lfo.connect(lfoGain);lfoGain.connect(osc.frequency);
+      lfo.start(ctx.currentTime+times[i]);
+      lfo.stop(ctx.currentTime+times[i]+0.4);
+      gain.gain.setValueAtTime(0,ctx.currentTime+times[i]);
+      gain.gain.linearRampToValueAtTime(0.12,ctx.currentTime+times[i]+0.04);
+      gain.gain.linearRampToValueAtTime(0,ctx.currentTime+times[i]+0.32);
+      osc.start(ctx.currentTime+times[i]);
+      osc.stop(ctx.currentTime+times[i]+0.35);
+    });
+  }catch(e){}
+}
+
+noBtnEl.addEventListener('mouseenter', teleportNo);
+noBtnEl.addEventListener('touchstart', function(e){ e.preventDefault(); teleportNo(); }, {passive:false});
+noBtnEl.addEventListener('click', teleportNo);
+if(noBtnEl){noBtnEl.style.right="-10px";noBtnEl.style.top="10px";}
+
+/* ── SCREEN 5: FLIP CARDS ── */
+let flippedCount=0;
+document.querySelectorAll('.flip-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    if(card.classList.contains('flipped'))return;
+    card.classList.add('flipped');
+    flippedCount++;
+    if(flippedCount>=4){
+      setTimeout(()=>{ document.getElementById('toMainBtn').style.display='block'; },600);
+    }
+  });
+});
+document.getElementById('toMainBtn').addEventListener('click',()=>{
+  var sc = document.getElementById('sc-flip');
+  sc.style.transition = 'opacity 0.8s ease';
+  sc.style.opacity = '0';
+  sc.style.pointerEvents = 'none';
+  setTimeout(function(){ sc.style.display = 'none'; }, 900);
+
+  var main = document.getElementById('sc-main');
+  // ensure it's block before opacity
+  main.style.display = 'block';
+  main.style.transition = 'none';
+  main.style.opacity = '0';
+  setTimeout(function(){
+    main.style.transition = 'opacity 1s ease';
+    main.style.opacity = '1';
+    main.classList.add('active');
+    initMain();
+  }, 400);
+});
+
+/* ── MAIN SITE ── */
+function initMain(){
+  initBgFloat();
+  // Fallback: show all rv elements after 300ms in case IntersectionObserver misses
+  setTimeout(function(){
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('vis'); });
+  }, 300);
+  initScrollReveal();
+  initTabSystem();
+  initNoteCards();
+  initReasons();
+  initSurprise();
+  initFinalCanvas();
+  initSurpriseCanvas();
+}
+
+function initBgFloat(){
+  const cont=document.getElementById('bg-float');
+  const syms=['🌙','🌸','✦','💕','✨','🎀','💫','🎂'];
+  for(let i=0;i<28;i++){
+    const s=document.createElement('span');
+    s.textContent=syms[i%syms.length];
+    s.style.cssText=`left:${Math.random()*100}vw;animation-duration:${20+Math.random()*22}s;animation-delay:-${Math.random()*35}s;font-size:${1.1+Math.random()*1.2}rem`;
+    cont.appendChild(s);
+  }
+}
+
+/* MUSIC */
+const mBtn=document.getElementById('mBtn'),bgm=document.getElementById('bgm');let mon=false;
+mBtn.addEventListener('click',()=>{mon=!mon;if(mon){bgm.volume=0.18;bgm.play().catch(()=>{});mBtn.textContent='♩';}else{bgm.pause();mBtn.textContent='♪';}});
+
+function initScrollReveal(){
+  document.querySelectorAll('.rv').forEach((el,i)=>{
+    el.style.transitionDelay=((i%4)*0.08)+'s';
+    new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)el.classList.add('vis');});},{threshold:0.05,rootMargin:'0px 0px -20px 0px'}).observe(el);
+  });
+}
+
+/* ══ TAB SYSTEM ══ */
+function initTabSystem(){
+  const state={ru:{unlocked:true,read:new Set()},rh:{unlocked:false,read:new Set()},en:{unlocked:false,read:new Set()}};
+  document.querySelectorAll('.tab-btn2').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const t=btn.dataset.tab;
+      if(!state[t].unlocked){shakeEl(btn);return;}
+      document.querySelectorAll('.tab-btn2').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.lpanel').forEach(p=>{p.classList.remove('active');p.classList.add('hidden');});
+      btn.classList.add('active');
+      const panel=document.getElementById('lp-'+t);
+      panel.classList.remove('hidden');panel.classList.add('active');
+      if(t==='rh'){showRhContent(state.rh.unlocked);}
+      if(t==='en'){showEnContent(state.en.unlocked);}
+      updateProg2(t,state[t].read.size);
+    });
+  });
+  document.querySelectorAll('.teddy-card2').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const t=card.dataset.tab,id=card.dataset.id;
+      if(!state[t]||!state[t].unlocked)return;
+      openTeddyModal(card);
+      if(!state[t].read.has(id)){
+        state[t].read.add(id);card.classList.add('read');
+        card.querySelector('.teddy-h').textContent='✦ Read 🌸';
+        card.querySelector('.teddy-h').classList.add('done');
+        updateProg2(t,state[t].read.size);
+        if(state[t].read.size>=4){
+          const bnr=document.getElementById('unl-'+t);
+          if(bnr){bnr.style.display='block';}
+          setTimeout(()=>{
+            if(t==='ru'&&!state.rh.unlocked){
+              state.rh.unlocked=true;
+              const b=document.getElementById('tab-rh2');
+              b.classList.remove('locked');b.textContent='🌸 Card 2';
+              document.getElementById('tabNote2').textContent='🌸 Card 2 unlock ho gaya!';
+            } else if(t==='rh'&&!state.en.unlocked){
+              state.en.unlocked=true;
+              const b=document.getElementById('tab-en2');
+              b.classList.remove('locked');b.textContent='✨ Card 3';
+              document.getElementById('tabNote2').textContent='✨ Card 3 unlock ho gaya!';
+            }
+          },1000);
+        }
+      }
+    });
+  });
+}
+function showRhContent(u){document.getElementById('lock-rh2').style.display=u?'none':'block';const c=document.getElementById('rh-grid');u?c.classList.remove('hidden'):c.classList.add('hidden');}
+function showEnContent(u){document.getElementById('lock-en2').style.display=u?'none':'block';const c=document.getElementById('en-grid');u?c.classList.remove('hidden'):c.classList.add('hidden');}
+function updateProg2(t,c){document.getElementById('progLbl2').textContent=c+' of 4 read — '+t.toUpperCase();document.getElementById('progFill2').style.width=(c/4*100)+'%';}
+function shakeEl(el){let i=0,steps=[-6,6,-5,5,-3,3,0];const t=setInterval(()=>{el.style.transform=`translateX(${steps[i]}px)`;i++;if(i>=steps.length){clearInterval(t);el.style.transform='';}},50);}
+
+/* TEDDY MODAL */
+function openTeddyModal(card){
+  document.getElementById('tm-emo').textContent=card.dataset.emo||'🧸';
+  document.getElementById('tm-title').textContent=card.dataset.title;
+  document.getElementById('tm-en').textContent=card.dataset.en||'';
+  openMod('teddyModal');
+}
+document.getElementById('tmCls').addEventListener('click',()=>closeMod('teddyModal'));
+document.getElementById('teddyModal').addEventListener('click',e=>{if(e.target===document.getElementById('teddyModal'))closeMod('teddyModal');});
+
+/* NOTE CARDS */
+function initNoteCards(){
+  document.querySelectorAll('.note-card').forEach(c=>{
+    c.addEventListener('click',()=>{
+      document.getElementById('nm-emo').textContent=c.dataset.emo||'🌸';
+      document.getElementById('nm-title').textContent=c.dataset.title;
+      document.getElementById('nm-en').textContent=c.dataset.en;
+      openMod('noteModal');
+    });
+  });
+  document.getElementById('nmCls').addEventListener('click',()=>closeMod('noteModal'));
+  document.getElementById('noteModal').addEventListener('click',e=>{if(e.target===document.getElementById('noteModal'))closeMod('noteModal');});
+}
+
+function openMod(id){const m=document.getElementById(id);m.classList.remove('hidden');requestAnimationFrame(()=>m.classList.add('vis'));}
+function closeMod(id){const m=document.getElementById(id);m.classList.remove('vis');setTimeout(()=>m.classList.add('hidden'),400);}
+
+/* REASONS */
+function initReasons(){
+  // show immediately with stagger
+  document.querySelectorAll('.ri').forEach(function(el,i){
+    setTimeout(function(){ el.classList.add('vis'); }, 200 + i*100);
+    new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)el.classList.add('vis');});},{threshold:0.05}).observe(el);
+  });
+}
+
+/* SURPRISE LINES */
+function initSurprise(){
+  const lines=document.querySelectorAll('.sv-line');
+  new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)lines.forEach((l,i)=>setTimeout(()=>{l.style.transition='opacity 1.2s ease,transform 1.2s ease';l.style.opacity='1';l.style.transform='translateY(0)';},i*500));});},{threshold:.35}).observe(document.querySelector('.sv-sec'));
+}
+
+/* SURPRISE CANVAS */
+function initSurpriseCanvas(){
+  const cv=document.getElementById('svc'),cx=cv.getContext('2d');let W,H,o=[];
+  function r(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}r();window.addEventListener('resize',r);
+  function mk(){return{x:Math.random()*W,y:Math.random()*H,r:20+Math.random()*50,dx:(Math.random()-.5)*.2,dy:(Math.random()-.5)*.2,a:.025+Math.random()*.055,h:Math.random()<.6?'200,50,100':'212,130,200'};}
+  for(let i=0;i<14;i++)o.push(mk());
+  (function t(){cx.clearRect(0,0,W,H);o.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<-p.r)p.x=W+p.r;if(p.x>W+p.r)p.x=-p.r;if(p.y<-p.r)p.y=H+p.r;if(p.y>H+p.r)p.y=-p.r;const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);g.addColorStop(0,`rgba(${p.h},${p.a})`);g.addColorStop(1,'transparent');cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fill();});requestAnimationFrame(t);})();
+}
+
+/* FINAL CANVAS */
+function initFinalCanvas(){
+  const cv=document.getElementById('fc'),cx=cv.getContext('2d');let W,H,p=[];
+  function r(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;}r();window.addEventListener('resize',r);
+  const cols=['rgba(200,50,100,','rgba(242,196,216,','rgba(212,175,114,'];
+  function mk(){return{x:Math.random()*W,y:H+10,r:.4+Math.random()*1.7,sp:.12+Math.random()*.45,a:.07+Math.random()*.4,col:cols[Math.floor(Math.random()*cols.length)],w:Math.random()*2,wa:Math.random()*1.3,t:Math.random()*100};}
+  for(let i=0;i<80;i++){const pt=mk();pt.y=Math.random()*H;p.push(pt);}
+  (function tick(){cx.clearRect(0,0,W,H);p.forEach((pt,i)=>{pt.y-=pt.sp;pt.t+=.02;pt.x+=Math.sin(pt.t*pt.w)*pt.wa;if(pt.y<-10)p[i]=mk();cx.beginPath();cx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);cx.fillStyle=pt.col+pt.a+')';cx.fill();});requestAnimationFrame(tick);})();
+  new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.fm').forEach((m,i)=>{m.style.transition=`opacity 1.2s ease ${i*.4}s`;m.style.opacity='.78';});});},{threshold:.3}).observe(document.querySelector('.final-sec'));
+}
+</script>
+</body>
+</html>

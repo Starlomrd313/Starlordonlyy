@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Sumera ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#070b24; --navy:#0f1a4a; --pink:#ffc2d6; --rose:#ff8fb1; --gold:#f5d58a;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --script:'Great Vibes','Brush Script MT',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:radial-gradient(ellipse at 50% 0%,var(--navy) 0%,var(--night) 70%) fixed;
+  color:var(--pink); font-family:var(--serif); overflow:hidden;
+  padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);
+}
+/* Stars & hearts */
+#stars,#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 6px 1px rgba(245,213,138,.7);animation:twinkle var(--d) ease-in-out infinite;opacity:.2}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+body.dreamy .star{box-shadow:0 0 10px 2px rgba(255,194,214,.8)}
+.heart{position:absolute;bottom:-40px;color:var(--rose);opacity:0;animation:floatUp var(--d) linear forwards;text-shadow:0 0 12px rgba(255,143,177,.8)}
+@keyframes floatUp{10%{opacity:.5}90%{opacity:.3}100%{transform:translateY(-110vh) translateX(var(--x)) rotate(25deg);opacity:0}}
+.moon{position:fixed;top:9%;right:10%;font-size:2.4rem;filter:drop-shadow(0 0 18px var(--gold));opacity:0;transition:opacity 3s}
+body.dreamy .moon{opacity:.9}
+
+/* Stages */
+.stage{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px 24px;z-index:2}
+.stage.show{display:flex;animation:fadeIn 1.6s ease both}
+.stage.out{animation:fadeOut 1s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeOut{to{opacity:0;transform:translateY(-24px)}}
+.tag{font-size:1rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:.85}
+h1{font-family:var(--script);font-weight:400;font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.2;color:var(--pink);text-shadow:0 0 24px rgba(255,143,177,.55);max-width:14em}
+.msg{font-size:clamp(1.25rem,4.6vw,1.75rem);line-height:1.75;max-width:30em;font-style:italic;color:#ffe6ee;margin-top:1.4rem}
+.msg span{opacity:0;display:inline-block;margin-right:.28em;animation:word .9s ease forwards}
+@keyframes word{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.btn{margin-top:2rem;font-family:var(--serif);font-size:1.25rem;font-weight:600;letter-spacing:.06em;color:#2a1030;background:linear-gradient(135deg,var(--gold),var(--pink));border:0;border-radius:50px;padding:.95rem 2.2rem;cursor:pointer;box-shadow:0 0 26px rgba(245,213,138,.45);transition:transform .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent}
+.btn:hover,.btn:active{transform:scale(1.05);box-shadow:0 0 40px rgba(255,194,214,.7)}
+.hidden{display:none}
+.fade{animation:fadeIn 1.4s ease both}
+
+/* Stage 3 */
+.clock{font-family:var(--serif);font-weight:600;font-size:clamp(4.5rem,24vw,9rem);color:#fff3d1;letter-spacing:.05em;text-shadow:0 0 14px var(--gold),0 0 40px var(--gold),0 0 90px rgba(245,213,138,.6);animation:glow 3.5s ease-in-out infinite}
+@keyframes glow{50%{text-shadow:0 0 20px var(--gold),0 0 60px var(--gold),0 0 130px rgba(255,194,214,.8);transform:scale(1.03)}}
+.finale{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,5.6vw,2rem);letter-spacing:.08em;line-height:1.6;max-width:16em;color:var(--pink);margin-top:2rem;text-shadow:0 0 22px rgba(255,143,177,.6);animation:fadeIn 2.5s ease both}
+
+/* Music toggle */
+#music{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;z-index:10;background:rgba(255,255,255,.08);border:1px solid rgba(245,213,138,.4);color:var(--gold);font-family:var(--serif);font-size:1rem;padding:.45rem .9rem;border-radius:30px;cursor:pointer;backdrop-filter:blur(6px)}
+</style>
+</head>
+<body>
+<div id="stars"></div><div id="hearts"></div><div class="moon">🌙</div>
+<button id="music" aria-label="Toggle music">♪ Music: Off</button>
+
+<!-- Stage 1 -->
+<section class="stage show" id="s1">
+  <div class="tag">💍 A Little Proposal</div>
+  <h1>A Little Something for You, Sumera...</h1>
+  <button class="btn" id="open">Open My Heart ❤️</button>
+  <p class="msg hidden" id="m1">Sumera, I don’t just want beautiful moments with you. I want a beautiful lifetime with you. I wish that one day Allah makes you my partner through Nikaah, and I get to love, respect and care for you every single day.</p>
+  <button class="btn hidden" id="next1">Next ❤️</button>
+</section>
+
+<!-- Stage 2 -->
+<section class="stage" id="s2">
+  <div class="tag">🤲🏻 A Dua for Us</div>
+  <p class="msg hidden" id="m2">Ya Allah, if this love is good for us, make our paths easy, bless our bond with sincerity, and unite us in the beautiful relationship of Nikaah. Fill our lives with happiness, understanding and endless barakah. And may we always remain together in this world and reunite in Jannah. Ameen.</p>
+  <button class="btn hidden" id="next2">One Last Thing ✨</button>
+</section>
+
+<!-- Stage 3 -->
+<section class="stage" id="s3">
+  <div class="tag">🌙 My 11:11 Wish</div>
+  <div class="clock">11:11</div>
+  <p class="msg hidden" id="m3">At 11:11, I don’t wish for a perfect life. I just wish for a life where I get to see your smile, hold your hand, take care of you, and call you mine. May every dua that has your name in it become a beautiful reality. ❤️</p>
+  <div class="finale hidden" id="end">I LOVE YOU MERI PYAARI PYAARI SUMERA MERI JHAMKUDIIII MERI JAAN, 🥺💗</div>
+</section>
+
+<script>
+const $ = id => document.getElementById(id);
+
+/* Stars */
+for (let i = 0; i < 90; i++) {
+  const s = document.createElement('div'), z = Math.random() * 2.5 + 1;
+  s.className = 'star';
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${z}px;height:${z}px;--d:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+  $('stars').appendChild(s);
+}
+
+/* Floating hearts */
+setInterval(() => {
+  const h = document.createElement('span');
+  h.className = 'heart'; h.textContent = '❤';
+  h.style.cssText = `left:${Math.random()*100}%;font-size:${10+Math.random()*16}px;--d:${9+Math.random()*7}s;--x:${(Math.random()-.5)*80}px`;
+  $('hearts').appendChild(h);
+  setTimeout(() => h.remove(), 16000);
+}, 1400);
+
+/* Word-by-word reveal; returns total duration in ms */
+function reveal(el) {
+  const words = el.textContent.trim().split(/\s+/);
+  el.innerHTML = words.map((w, i) => `<span style="animation-delay:${i * 0.13}s">${w}</span>`).join(' ');
+  el.classList.remove('hidden');
+  return words.length * 130 + 900;
+}
+function showAfter(el, ms) { setTimeout(() => { el.classList.remove('hidden'); el.classList.add('fade'); }, ms); }
+function go(from, to, after) {
+  from.classList.add('out');
+  setTimeout(() => { from.classList.remove('show', 'out'); to.classList.add('show'); after && after(); }, 1000);
+}
+
+/* Stage 1 */
+$('open').onclick = () => {
+  $('open').classList.add('hidden');
+  showAfter($('m1'), 0); // placeholder to keep class logic simple
+  $('m1').classList.add('hidden');
+  const t = reveal($('m1'));
+  showAfter($('next1'), t);
+};
+/* Stage 2 */
+$('next1').onclick = () => go($('s1'), $('s2'), () => {
+  document.body.classList.add('dreamy');
+  const t = reveal($('m2'));
+  showAfter($('next2'), t);
+});
+/* Stage 3 */
+$('next2').onclick = () => go($('s2'), $('s3'), () => {
+  const t = reveal($('m3'));
+  showAfter($('end'), t + 600);
+});
+
+/* Soft ambient music (generated in-browser, no files) — off by default */
+let ctx, master, filter, timer, on = false, step = 0;
+const chords = [[261.63,329.63,392],[220,261.63,329.63],[174.61,220,261.63],[196,246.94,293.66]];
+function tone(f, t, d, v, type) {
+  const o = ctx.createOscillator(), g = ctx.createGain();
+  o.type = type; o.frequency.value = f;
+  g.gain.setValueAtTime(0, t);
+  g.gain.linearRampToValueAtTime(v, t + d * 0.35);
+  g.gain.linearRampToValueAtTime(0, t + d);
+  o.connect(g); g.connect(filter); o.start(t); o.stop(t + d + 0.1);
+}
+function chord() {
+  const t = ctx.currentTime, c = chords[step++ % 4];
+  c.forEach(f => tone(f, t, 5, 0.05, 'sine'));
+  tone(c[0] / 2, t, 5, 0.07, 'sine');
+  c.forEach((f, i) => tone(f * 2, t + 0.5 + i * 1.1, 2.5, 0.03, 'triangle'));
+}
+$('music').onclick = () => {
+  if (!ctx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    ctx = new AC(); master = ctx.createGain(); filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass'; filter.frequency.value = 1400;
+    master.gain.value = 0.9; filter.connect(master); master.connect(ctx.destination);
+  }
+  on = !on;
+  if (on) { ctx.resume(); chord(); timer = setInterval(chord, 4000); }
+  else { clearInterval(timer); ctx.suspend(); }
+  $('music').textContent = on ? '♪ Music: On' : '♪ Music: Off';
+};
+</script>
+</body>
+</html>
